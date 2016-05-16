@@ -1,4 +1,4 @@
-%% e-pTeX macro
+%% e-pTeX macro (2016/05/16)
 %% derived from $TEXMF/tex/plain/etex/etex.src (V2.1;0 01-FEB-1999)
 %% e-pTeX:   eptex *eptex.tex
 
@@ -492,9 +492,9 @@
 \count 265=\@cclvi % globally allocates \toks registers 256, 257, ...
 \count 266=\@ne    % globally allocates \marks classes 1, 2, ...
 
-\def \et@xmaxregs {65536}
+\def \et@xmaxregs {65536} % FAM256 patched (2016/05/16)
 
-\count 270=\et@xmaxregs % locally allocates \count registers 32767, 32766, ...
+\count 270=\et@xmaxregs % locally allocates \count registers 65535, 65534, ...
 \count 271=\et@xmaxregs % ditto for \dimen registers
 \count 272=\et@xmaxregs % ditto for \skip registers
 \count 273=\et@xmaxregs % ditto for \muskip registers
