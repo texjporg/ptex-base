@@ -1,6 +1,7 @@
-% This is the pTeX format
+% This is the pTeX format (community edition)
+%   last update: texjporg 2016/05/17
 %
-%	(C)copyright ASCII corporation,1987,1995,1997
+%       (C)copyright ASCII corporation,1987,1995,1997
 %
 \input plain
 \catcode`@=11 % at signs are no longer letters
@@ -62,6 +63,6 @@
 \autospacing\autoxspacing
 \jcharwidowpenalty=500
 %
-% identifies the current format
+% identifies the current format based on plain
 \def\fmtname{ptex}
-\def\fmtversion{3.14159 p1.0b}
+\edef\fmtversion{\fmtversion\space p1.0b}
