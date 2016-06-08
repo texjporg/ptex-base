@@ -1,5 +1,5 @@
 %
-%	行頭、行末禁則パラメータ
+% 行頭、行末禁則パラメータ (Last update: 2016/06/08 texjporg)
 %
 % 1byte characters
 \prebreakpenalty`!=10000
@@ -105,6 +105,12 @@
 \xspcode`;=2
 \xspcode`,=2
 \xspcode`.=2
+% xspcode for 8-bit Latin (Added 2016/06/08)
+\@tempcnta="80
+\loop\ifnum\@tempcnta<\@cclvi
+  \xspcode\@tempcnta=3
+  \advance\@tempcnta\@ne
+\repeat
 %
 % inhibitxspcode
 \inhibitxspcode`、=1
