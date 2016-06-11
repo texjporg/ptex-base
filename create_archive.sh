@@ -22,4 +22,4 @@ PWDF=`pwd`
 cd $TMP && zip -r $PWDF/$PROJECT.zip $PROJECT
 rm -rf $TMP/$PROJECT
 echo
-echo " * Done: $PROJECT.zip"
+echo " * Done: $PROJECT.zip ($RELEASEDATE)"
