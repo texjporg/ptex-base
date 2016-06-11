@@ -22,6 +22,6 @@ the 3-clause BSD license (see LICENSE).
 
 ## Release Date
 
-2016-04-17
+$RELEASEDATE
 
 Japanese TeX Development Community
