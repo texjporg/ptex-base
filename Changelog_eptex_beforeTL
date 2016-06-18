@@ -1,115 +1,115 @@
 
-2008. 1. 1: ˆê‰‘æ1”Å‚Æ‚µ‚Ä‚¨‚±‚¤D
+2008. 1. 1: $B0l1~Bh(B1$BHG$H$7$F$*$3$&!%(B
 
-2008. 1. 2: document ‚ÌXVD”’lÏ•ª‚Æ‚¢‚¤ sample ‚Ì’Ç‰ÁD
+2008. 1. 2: document $B$N99?7!%?tCM@QJ,$H$$$&(B sample $B$NDI2C!%(B
 
-2008. 1. 3: ‚¢‚Â‚Ì‚Ü‚É‚©ì‹Æ’†‚É etex.ch ‚ğ‘‚«Š·‚¦‚Ä‚¢‚½‚Ì‚ÅC³D
-            teTeX3 ‰º‚Å‚ÌƒRƒ“ƒpƒCƒ‹‚É‚Â‚¢‚Ä‚Ì•â‘«‚ğ’Ç‰ÁD
+2008. 1. 3: $B$$$D$N$^$K$+:n6HCf$K(B etex.ch $B$r=q$-49$($F$$$?$N$G=$@5!%(B
+            teTeX3 $B2<$G$N%3%s%Q%$%k$K$D$$$F$NJdB-$rDI2C!%(B
 
-2008. 1. 4: TeX--XeT ‹@”\‚ğŒ±“I‚ÉƒTƒ|[ƒgD
-            ”®‚Ì baseline ‚ğ‘µ‚¦•û‚ğ•Ï‚¦‚é
-              \mathdisplacementstate ‚ğ’Ç‰Á  (in pTeX)
+2008. 1. 4: TeX--XeT $B5!G=$r;n83E*$K%5%]!<%H!%(B
+            $B?t<0$N(B baseline $B$rB7$(J}$rJQ$($k(B
+              \mathdisplacementstate $B$rDI2C(B  (in pTeX)
 
 build 80105.11, 21
-        o \lastnodetype, \currentiflevel ‚ğ e-TeX ‚Ì“®ì‚É‡‚í‚¹‚½D
-        o “ú•\‹L‚ğ 80000+100*Œ+“ú+ŠÔ/100 ‚Ì”’l‚É•ÏXD
-        o ./trip ‚Ìg‚¢•û‚È‚Ç‚ğ‹L“üD
-        o \currentiflevel ‚Ü‚í‚è‚Ì typo ‚ğ fixD
-        o W32TeX ‚Æ‡‚í‚¹‚½‚Æ‚«‚Ì compile è‡i–¢ƒ`ƒFƒbƒNj‚ğ‹L“ü
-        o upTeX ‚Æ‡‚í‚¹‚½‚Æ‚«‚Ì compile è‡‚ğ‰üeicompile‚¾‚¯j
-        o README.txt ‚©‚ç HOWTOINST.txt ‚ğ•ª—£D
+        o \lastnodetype, \currentiflevel $B$r(B e-TeX $B$NF0:n$K9g$o$;$?!%(B
+        o $BF|;~I=5-$r(B 80000+100*$B7n(B+$BF|(B+$B;~4V(B/100 $B$N?tCM$KJQ99!%(B
+        o ./trip $B$N;H$$J}$J$I$r5-F~!%(B
+        o \currentiflevel $B$^$o$j$N(B typo $B$r(B fix$B!%(B
+        o W32TeX $B$H9g$o$;$?$H$-$N(B compile $B<j=g!JL$%A%'%C%/!K$r5-F~(B
+        o upTeX $B$H9g$o$;$?$H$-$N(B compile $B<j=g$r2~9F!J(Bcompile$B$@$1!K(B
+        o README.txt $B$+$i(B HOWTOINST.txt $B$rJ,N%!%(B
 
 build 80106.14, 19
-        o W32TeX ‚Æ‡‚í‚¹‚½‚Æ‚«‚Ì compile è‡‚ª³‚µ‚­‚È‚©‚Á‚½‚Ì‚ğC³D
-        o document ‚Ì‚³‚ç‚È‚é®”õCresume.tex ‚ÌƒRƒ“ƒpƒCƒ‹—vŒ‚ª‚í‚©‚ç‚È‚­
-          ‚È‚Á‚½
+        o W32TeX $B$H9g$o$;$?$H$-$N(B compile $B<j=g$,@5$7$/$J$+$C$?$N$r=$@5!%(B
+        o document $B$N$5$i$J$k@0Hw!$(Bresume.tex $B$N%3%s%Q%$%kMW7o$,$o$+$i$J$/(B
+          $B$J$C$?(B
 
 build 80108.19
-        o upeTeX ‚Æ‚Ìˆê–{‰»vDŠp“¡‚³‚ñ‚ª Windows —p build ‚ğ’ñ‹Ÿ‚µ‚Ä‚­‚ê‚é
-          ‚±‚Æ‚É‚È‚Á‚½‚Ì‚ÅCW32TeX ‚Æ‡‚í‚¹‚½ build ‚Ì‰ğà‚ğíœD
-        o ª‚É”º‚¤Cptex-hack-1.diff ‚ÌíœD—]Œv‚È ptex-orig.diff ‚Ì”p~D
+        o $B!V(BpeTeX $B$H$N0lK\2=!W!%3QF#$5$s$,(B Windows $BMQ(B build $B$rDs6!$7$F$/$l$k(B
+          $B$3$H$K$J$C$?$N$G!$(BW32TeX $B$H9g$o$;$?(B build $B$N2r@b$r:o=|!%(B
+        o $B",$KH<$&!$(Bptex-hack-1.diff $B$N:o=|!%M>7W$J(B ptex-orig.diff $B$NGQ;_!%(B
 
 build 80110.20
-        o upTeX ‚Æ‚Ìƒ}[ƒW•û–@‚ÉŠÖ‚·‚é•”•ª‚ğC³D
-        o •‚“®¬”“_‰‰ZŠg’£‚Ì•”•ª fp.diff ‚ğ WEB change file ‚ÌŒ`®‚É•ÏXD
-          “¯‚ÉCŒ¸Z‚Å ‡ - ‡ ‚ÌŒ‹‰Ê‚ª NaN ‚É‚È‚Á‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ğC³D
+        o upTeX $B$H$N%^!<%8J}K!$K4X$9$kItJ,$r=$@5!%(B
+        o $BIbF0>.?tE@1i;;3HD%$NItJ,(B fp.diff $B$r(B WEB change file $B$N7A<0$KJQ99!%(B
+          $BF1;~$K!$8:;;$G(B $B!g(B - $B!g(B $B$N7k2L$,(B NaN $B$K$J$C$F$$$J$+$C$?$N$r=$@5!%(B
 
 build 80113.22
-        o •‚“®¬”“_‰‰ZiˆÈ‰º fpj‚Å‚Ìƒ[ƒN—Ìˆæ‚ğŠm•Û‚·‚é—Ê‚ÌŠÔˆá‚¢‚É‚æ‚èC
-          Segfault ‚·‚é‰Â”\«‚ª‚ ‚éƒoƒO‚ğC³iÀÛ‚É‚Í•½•ûª‚ÌŒvZ‚È‚Ç‚ª
-          54 Œ…‚Ås‚í‚ê‚Ä‚¢‚éê‡‚ª‚ ‚Á‚½‚±‚Æ‚É‚æ‚é‚Ì‚ÅC‚»‚¿‚ç‚Ì•û‚ğC³‚µ
-          ‚½j
-        o resume.pdf ‚Í”­•\‚Æ‚µ‚Ä‚Íg‚í‚È‚¢‚±‚Æ‚É‚µ‚½iƒXƒ‰ƒCƒh‚ğ•Ê‚Éì‚Á
-          ‚ÄC‚»‚¿‚ç‚ğg‚¤—\’èjD‚µ‚©‚µ‚±‚Ìƒtƒ@ƒCƒ‹‚ª‚à‚ÆD
+        o $BIbF0>.?tE@1i;;!J0J2<(B fp$B!K$G$N%o!<%/NN0h$r3NJ]$9$kNL$N4V0c$$$K$h$j!$(B
+          Segfault $B$9$k2DG=@-$,$"$k%P%0$r=$@5!J<B:]$K$OJ?J}:,$N7W;;$J$I$,(B
+          54 $B7e$G9T$o$l$F$$$k>l9g$,$"$C$?$3$H$K$h$k$N$G!$$=$A$i$NJ}$r=$@5$7(B
+          $B$?!K(B
+        o resume.pdf $B$OH/I=;~$H$7$F$O;H$o$J$$$3$H$K$7$?!J%9%i%$%I$rJL$K:n$C(B
+          $B$F!$$=$A$i$r;H$&M=Dj!K!%$7$+$7$3$N%U%!%$%k$,$b$H!%(B
 
 build 80120.11, 19
-        o fp ¨ integer ‚Ì•ÏŠ·ƒ~ƒX‚ğC³D
-        o eptexdefs.lib ‚ğì¬D‚»‚ê‚É”º‚¢ eptex.src ‚ğ­X‰ü’è
-        o upTeX-0.20 ‚É‡‚¤‚æ‚¤‚ÉXVD
-        o license ‚ğ‚¿‚á‚ñ‚ÆŒˆ‚ß‚½Diu’Ê‚è‚·‚ª‚è2v‚³‚ñC‚ ‚è‚ª‚Æ‚¤‚²‚´‚¢‚Ü‚·j
-        o doc/ ‚É•‚“®¬”“_‰‰Z‚ÌƒTƒ“ƒvƒ‹ tri.tex ‚ğ’Ç‰Á
+        o fp $B"*(B integer $B$NJQ49%_%9$r=$@5!%(B
+        o eptexdefs.lib $B$r:n@.!%$=$l$KH<$$(B eptex.src $B$r>/!92~Dj(B
+        o upTeX-0.20 $B$K9g$&$h$&$K99?7!%(B
+        o license $B$r$A$c$s$H7h$a$?!%!J!VDL$j$9$,$j(B2$B!W$5$s!$$"$j$,$H$&$4$6$$$^$9!K(B
+        o doc/ $B$KIbF0>.?tE@1i;;$N%5%s%W%k(B tri.tex $B$rDI2C(B
 
 build 80125.09
-        o fp.pdf ‚ª‰ó‚ê‚Ä‚¢‚½‚Ì‚ÅC³D
+        o fp.pdf $B$,2u$l$F$$$?$N$G=$@5!%(B
 
 build 80131.21
-        o TeX--XeT ‚Å‚Ì displacement node ‚Ìæˆµ‚¢‚ğ‰ü—Ç‚µC˜a‰¢•¶¬İ‚Ì
-          ‘g”ÅŒ‹‰Ê‚ª‚¿‚å‚Á‚Æ—Ç‚­‚È‚Á‚½D
-        o resume.pdf ‚ÌXVD
+        o TeX--XeT $B$G$N(B displacement node $B$N<h07$$$r2~NI$7!$OB2$J8:.:_;~$N(B
+          $BAHHG7k2L$,$A$g$C$HNI$/$J$C$?!%(B
+        o resume.pdf $B$N99?7!%(B
 
 build 80316.xx
-        o ¶‘¶Ø–¾iÎj
-        o •‚“®¬”“_‰‰Z‚É MPFR library ‚ğg—p‚µ‚Ä‚İ‚½DŠi”[Œ`®‚ª•ÏX‚³‚êC
-          ‰¼”•”‚ª10i21Œ…‚©‚ç2i 78 bitiimplicit 79 bit)‚ÉD
+        o $B@8B8>ZL@!J>P!K(B
+        o $BIbF0>.?tE@1i;;$K(B MPFR library $B$r;HMQ$7$F$_$?!%3JG<7A<0$,JQ99$5$l!$(B
+          $B2>?tIt$,(B10$B?J(B21$B7e$+$i(B2$B?J(B 78 bit$B!J(Bimplicit 79 bit)$B$K!%(B
 
-’ˆÓFã‚Ì 80316.xx ‚Ì˜Hü‚Í‚à‚Í‚âŒp‘±‚³‚ê‚Ä‚¢‚Ü‚¹‚ñD
+$BCm0U!'>e$N(B 80316.xx $B$NO)@~$O$b$O$d7QB3$5$l$F$$$^$;$s!%(B
 
 build 90111.20
-        o TeX Live 2008 ‰º‚Å‚ÌƒRƒ“ƒpƒCƒ‹‚É‘Î‰
-        o pteTeX3-20080616 (+ upTeX-0.25) ‰º‚Å‚ÌƒRƒ“ƒpƒCƒ‹‚É‘Î‰
-          ittk‚³‚ñCŠp“¡‚³‚ñC‚ ‚è‚ª‚Æ‚¤‚²‚´‚¢‚Ü‚·j
-        o INSTALL.txt ‚Ì‘å•‚È‘‚«’¼‚µD
+        o TeX Live 2008 $B2<$G$N%3%s%Q%$%k$KBP1~(B
+        o pteTeX3-20080616 (+ upTeX-0.25) $B2<$G$N%3%s%Q%$%k$KBP1~(B
+          $B!J(Bttk$B$5$s!$3QF#$5$s!$$"$j$,$H$&$4$6$$$^$9!K(B
+        o INSTALL.txt $B$NBgI}$J=q$-D>$7!%(B
 
 build 90218
-        o 80131.21 ”Å‚®‚ç‚¢‚ÌC³‚Å trip test ‚ªˆÙí‚ÈŒ‹‰Ê‚É‚È‚Á‚Ä‚¢‚½‚±‚Æ
-          ‚Ö‚ÌC³i•›ì—p‚ ‚é‚©‚àj
-        o ƒhƒLƒ…ƒƒ“ƒg—Ş‚Ì‘‚«’¼‚µD
-        o ¬”“_ˆÈ‰ºi‘å‘Ì‚ÌŠÔ‚ğ•\‚·j‚Í‚ ‚Ü‚èˆÓ–¡‚ª‚È‚¢‚Ì‚Å¡‰ñ‚©‚çÈ—ªD
-        o e-pTeX, e-upTeX –{‘Ì‚Ì version ‚à‹N“®‚Éo—Í‚·‚é‚æ‚¤‚É‚µ‚½D
-          ‚Ç‚ñ‚Ç‚ñ banner ‚ª’·‚­‚È‚Á‚Ä‚­‚éiÎj
+        o 80131.21 $BHG$0$i$$$N=$@5$G(B trip test $B$,0[>o$J7k2L$K$J$C$F$$$?$3$H(B
+          $B$X$N=$@5!JI{:nMQ$"$k$+$b!K(B
+        o $B%I%-%e%a%s%HN`$N=q$-D>$7!%(B
+        o $B>.?tE@0J2<!JBgBN$N;~4V$rI=$9!K$O$"$^$j0UL#$,$J$$$N$G:#2s$+$i>JN,!%(B
+        o e-pTeX, e-upTeX $BK\BN$N(B version $B$b5/F0;~$K=PNO$9$k$h$&$K$7$?!%(B
+          $B$I$s$I$s(B banner $B$,D9$/$J$C$F$/$k!J>P!K(B
 
-’ˆÓF–{—ˆ‚Í‚±‚Ì 90218 ‚ÌƒŠƒŠ[ƒX‚Ì—\’è‚Í‚È‚©‚Á‚½DFAM256 ƒpƒbƒ`‚Ì’²®‚ÉèŠÔ
-      æ‚è‚»‚¤‚¾‚Á‚½‚Ì‚ÅCbugfix ‚¾‚¯‚Å‚àæ‚Éo‚·‚±‚Æ‚É‚µ‚½‚Ì‚¾‚Á‚½D
+$BCm0U!'K\Mh$O$3$N(B 90218 $B$N%j%j!<%9$NM=Dj$O$J$+$C$?!%(BFAM256 $B%Q%C%A$ND4@0$K<j4V(B
+      $B<h$j$=$&$@$C$?$N$G!$(Bbugfix $B$@$1$G$b@h$K=P$9$3$H$K$7$?$N$@$C$?!%(B
 
 build 090220
-        o uFAM256ƒpƒbƒ`v‚ğì¬C’Ç‰ÁD
-          i‚±‚Ìƒpƒbƒ`‚ğg—p‚µ‚È‚¢ê‡‚Í 90218 ”Å‚©‚ç‚Ì•ÏX‚Íƒo[ƒWƒ‡ƒ“”Ô†
-            ‚Ì•ÏX‚Ì‚İj
-        o uƒfƒrŠÛv‚³‚ñ‚Ìw“E‚É‚æ‚èCƒo[ƒWƒ‡ƒ“”Ô†‚ğ 6 Œ…‚Æ‚µ‚½D
-           iƒfƒrŠÛ‚³‚ñC‚ ‚è‚ª‚Æ‚¤‚²‚´‚¢‚Ü‚·j
+        o $B!V(BFAM256$B%Q%C%A!W$r:n@.!$DI2C!%(B
+          $B!J$3$N%Q%C%A$r;HMQ$7$J$$>l9g$O(B 90218 $BHG$+$i$NJQ99$O%P!<%8%g%sHV9f(B
+            $B$NJQ99$N$_!K(B
+        o $B!V%G%S4]!W$5$s$N;XE&$K$h$j!$%P!<%8%g%sHV9f$r(B 6 $B7e$H$7$?!%(B
+           $B!J%G%S4]$5$s!$$"$j$,$H$&$4$6$$$^$9!K(B
 
 build 090223
-        o ƒRƒ“ƒpƒCƒ‹ƒXƒNƒŠƒvƒg‚Ì•ÏXD
-	  ‚Å‚«‚é‚¾‚¯ upTeX ‘¤‚Ìversion‚ª•Ï‚í‚Á‚Ä‚à’Ê‚é‚æ‚¤‚É‚µ‚½D
+        o $B%3%s%Q%$%k%9%/%j%W%H$NJQ99!%(B
+	  $B$G$-$k$@$1(B upTeX $BB&$N(Bversion$B$,JQ$o$C$F$bDL$k$h$&$K$7$?!%(B
 
 build 090309
-	o FreeBSD (on qemu) ‚Å‚àˆê•”ŠJ”­‚ğs‚¤‚±‚Æ‚ÉD
-	o ptexenc ‚É‚æ‚é pTeX ‚ÌC³‚ÆC–{ e-pTeX ‚É‚æ‚é pTeX ‚ÌC³‚ª‘S‚­
-	  ‚©‚¿‡‚í‚È‚¢‚ÆŠ¨ˆá‚¢‚ğ‚µ‚Ä‚¢‚½D‚±‚ê‚É”º‚¢Cptexenc ‚ª‚ ‚é‚±‚Æ‚ğ
-	  “®ì—vŒ‚Æ‚·‚é‚±‚Æ‚ÉD
-	o e-TeX ‚ÌğŒ•ªŠòŠg’£i\ifcsname ... \endcsnamej‚Ì•”•ª‚Å
-	  Š¿š‚ğl—¶‚µ‚Ä‚¢‚È‚©‚Á‚½“®ì‚¾‚Á‚½‚Ì‚ğC³D
-	o texmfmem.h, ptexenc ‚Ü‚í‚è‚ÌÄŒŸ“¢D‚±‚ê‚É‚æ‚èC-funsigned-char ‚â
-	  ucase 12v‚ª•s—v‚É‚È‚èCeplatex.fmt ì¬‚É segfault ‚·‚éƒoƒO‚à
-	  ’×‚¹‚½‚Æv‚¤D
+	o FreeBSD (on qemu) $B$G$b0lIt3+H/$r9T$&$3$H$K!%(B
+	o ptexenc $B$K$h$k(B pTeX $B$N=$@5$H!$K\(B e-pTeX $B$K$h$k(B pTeX $B$N=$@5$,A4$/(B
+	  $B$+$A9g$o$J$$$H4*0c$$$r$7$F$$$?!%$3$l$KH<$$!$(Bptexenc $B$,$"$k$3$H$r(B
+	  $BF0:nMW7o$H$9$k$3$H$K!%(B
+	o e-TeX $B$N>r7oJ,4t3HD%!J(B\ifcsname ... \endcsname$B!K$NItJ,$G(B
+	  $B4A;z$r9MN8$7$F$$$J$+$C$?F0:n$@$C$?$N$r=$@5!%(B
+	o texmfmem.h, ptexenc $B$^$o$j$N:F8!F$!%$3$l$K$h$j!$(B-funsigned-char $B$d(B
+	  $B!V(Bcase 12$B!W$,ITMW$K$J$j!$(Beplatex.fmt $B:n@.;~$K(B segfault $B$9$k%P%0$b(B
+	  $BDY$;$?$H;W$&!%(B
 
 build 090927
-	o FAM256 patch ‚ğ•W€‚Å—LŒø‚ÉD‚±‚Ì‚½‚ßC—LŒø‚Éƒo[ƒWƒ‡ƒ“‚Ì––”ö‚É
-	  ‚Â‚¢‚Ä‚¢‚½uFAM256-PATCHEDv‚Í‚à‚Í‚â‚Â‚©‚È‚¢D
-	o •–Ø‚³‚ñ‚È‚Ç‚©‚çue-TeX ƒx[ƒX‚É‚µ‚½•û‚ª—Ç‚¢‚Ì‚Å‚Ív‚Æ‚¢‚¤ˆÓŒ©‚ğ
-	  ‚¢‚½‚¾‚¢‚½‚Ì‚ÅC‚»‚Ì‚æ‚¤‚É‚µ‚Ä‚İ‚½D
-	o ƒRƒ“ƒpƒCƒ‹‚Ìƒx[ƒX‚Æ‚È‚éŠÂ‹«‚ª‚½‚­‚³‚ñ‚ ‚é‚Ì‚ÅC‚Æ‚è‚ ‚¦‚¸
-	  ¡‰ñ‚Í ptetex3-20090610 ‚Æ ptexlive-20090904 ‚Ì‚İì‹Æ‚µ‚Ä‚İ‚½D
+	o FAM256 patch $B$rI8=`$GM-8z$K!%$3$N$?$a!$M-8z;~$K%P!<%8%g%s$NKvHx$K(B
+	  $B$D$$$F$$$?!V(BFAM256-PATCHED$B!W$O$b$O$d$D$+$J$$!%(B
+	o $B9uLZ$5$s$J$I$+$i!V(Be-TeX $B%Y!<%9$K$7$?J}$,NI$$$N$G$O!W$H$$$&0U8+$r(B
+	  $B$$$?$@$$$?$N$G!$$=$N$h$&$K$7$F$_$?!%(B
+	o $B%3%s%Q%$%k$N%Y!<%9$H$J$k4D6-$,$?$/$5$s$"$k$N$G!$$H$j$"$($:(B
+	  $B:#2s$O(B ptetex3-20090610 $B$H(B ptexlive-20090904 $B$N$_:n6H$7$F$_$?!%(B
 	o I forgot to include copy of BSD license ^^;
 	o Implementation of floating-point arithmetic is deleted due to
 	  its half-hearted implementation.
