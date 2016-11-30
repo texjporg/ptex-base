@@ -1,0 +1,209 @@
+% pTeX サンプルファイル
+
+\font\tentmin=tmin10
+\font\ninetmin=tmin9
+\font\tentgoth=tgoth10
+\font\ninerm=cmr9
+\font\sixmin=min6
+\font\ninemin=min9
+\font\minii=tgoth10 scaled \magstep2
+
+\ninetmin \ninerm
+
+\newskip\連数skip
+\連数skip=0.3zw plus 0.1zw minus 0.1zw
+
+\def\連数字#1{\hskip\連数skip\hbox to 0pt{\yoko\hss#1\hss}\nobreak\hskip\連数skip}
+
+\def\nidan{
+  \loop\ifvbox0
+    \vfill
+    \vbox to \vsize{\baselineskip0mm \lineskiplimit0mm
+      \vss
+      \hbox to \hsize{\hss%
+    \vbox{\tate
+      \hrule
+      \hbox to 210mm{%
+        \vrule\hskip 70H%
+        \setbox1=\vsplit0 to 452H
+        \vtop to 148mm{\vskip 70H\unvbox1\vskip 70H}% 20*22+12
+        \hskip 36H%
+        \setbox1=\vsplit0 to 452H
+        \vtop to 148mm{\vskip 70H\unvbox1\vskip 70H}% 20*22+12
+        \hss%
+	\ifodd\count0%
+        \vtop{\vskip 70H\hbox to 452H{\yoko$\oldstyle\number\count0$\ 
+		\sixmin 社内結婚のしかた\hfil}}%
+	\else%
+        \vtop{\vskip 70H\hbox to 452H{\yoko\hfil\sixmin 社内結婚のしかた\ 
+		$\oldstyle\number\count0$}}%
+	\fi%
+        \hskip 56H\vrule%
+      }
+      \hrule
+    }%
+      \hss}\vskip3mm
+    \hbox to \hsize{\hfill\rm\tengt
+      株式会社 ▽▲☆ー 社内文書『社内結婚のしかた』より\hfill}
+    \vss}
+    \vfill
+    \eject
+  \repeat
+}
+
+\splittopskip=0pt
+\splitmaxdepth=0pt
+%\tbaselineshift=2.3pt
+\tbaselineshift=2pt
+\parindent=0zw
+\baselineskip=20H plus 1H
+\lineskiplimit=0H
+\lineskip=0H
+\leftskip=2zw
+
+\def\item#1{\leavevmode\hbox to 0pt{\kern-\leftskip #1\hss}}
+
+\setbox0=\vbox{\tate \hsize=324H% 12[Q]x 27[字ツメ]
+
+\line{\vrule width0pt height.5zh depth.5zh\hfill}
+\hbox to 1zh{\yoko\hss%
+\line{\tate\minii \hskip 1zh 社内結婚のしかた\hfill}%
+\hss}
+\line{\vrule width0pt height.5zh depth.5zh\hfill}
+
+\line{\hfil 登場人物 出版局のＮさん（社内結婚経験者）}
+\line{\hfil 	インタビュア 中村 権三（以下Ｋ）}
+\line{\vrule width0pt height.5zh depth.5zh\hfill}
+
+\item{Ｋ}お忙しいところありがとうございます。
+
+	今日は社内結婚についてお話をお伺いしたいのですが。
+
+\item{Ｎ}おっ、まったくもー、社内結婚つーわけね。
+	なんでも聞いてよ。
+
+\item{Ｋ}では、奥さんとはいつ、どこで知り合ったんですが？
+
+\item{Ｎ}きっかけかー、
+	▽▲☆ーに入った年（一昨年）の暮れの忘年会で会ったわけよ。
+	そのときちょっとだけ、お話したわけ。
+
+\item{Ｋ}っと、その場でいきなり誘ったんですか？
+
+\item{Ｎ}いや。
+	誘ったのはそのときじゃなくて、次の年の４月で、
+	夕刊 ▽▲☆ーのバースディカレンダーで、誕生日を知ってmailを出したのね。
+	そんで返事が来たわけよ。
+
+\item{Ｋ}ほー。
+	▽▲☆ーらしいですね。
+
+\item{Ｎ}そんでね、プレゼントも伊豆屋で買って渡したかったのね。
+	そしたら、誰かが彼女を呼んでくれて、プレゼントを渡したってわけ。
+
+\item{Ｋ}それがきっかけですか。
+	まわりの協力もあったんですね。
+
+	では、そのときデートに誘ったんですか？
+
+\item{Ｎ}いや。
+	一昨年の今ごろ、ゴールデンウィークなわけよ。
+	車で伊豆の川奈に行ったわけ。
+
+\item{Ｋ}日頃の連絡はどうしていたんですか？
+
+\item{Ｎ}やっぱり、mailとtalkだよね。
+	この２つは強力だけど、これだけに頼っちゃいけないわけ。
+	すぐばれるし、ふれ合いも大切にしないと。
+
+\item{Ｋ}なるほど。でっ具体的には？
+
+\item{Ｎ}朝はドトールコーヒーで、帰りは方円堂で待合せしたわけ。
+
+	ところで、大洋強いね。
+	まったくもーどーしちゃったのかね。
+
+\item{Ｋ}そーですね。
+	ところで弁当作ってもらったりしたそうですね。
+
+\item{Ｎ}なんで知ってるわけ？ %
+	そーそー、給湯室の電子レンジの上で受け取ったわけだよな。
+	これが。
+
+\item{Ｋ}デートは？
+
+\item{Ｎ}やっぱり、車だよね。
+
+\item{Ｋ}ははー。
+	そんなこんなで、先頃ご結婚なさったわけですが、
+	新婚旅行はどこ行ったんですか？
+
+\item{Ｎ}新婚旅行ね。
+	これがまた、オーストラリアなわけ。
+	\連数字{10}日間。
+
+\item{Ｋ}\連数字{10}日間もですか。
+	有給でも取ったんですか？
+
+\item{Ｎ}結婚するとね、結婚休暇が７日間もらえるんだよね。
+	それと祝日なんかを合わせて\連数字{10}日間。
+
+\item{Ｋ}結婚休暇ですか。
+	いいですね。
+	ところで、現在のお住いは、奥さんの実家だそうで。
+
+\item{Ｎ}そう。
+	生きるマスオさんなわけだな。
+	これが。
+
+\item{Ｋ}社内結婚の良い点と悪い点を教えてください。
+
+\item{Ｎ}悪い点は、悪いことができない。
+	女の子にちょっかい出せない
+
+\line{（外野）してるしてる。\hfil}
+
+\item{Ｎ}うるさいうるさい。
+	あとね、同じ部署内での社内結婚だと、
+	２人のどっちかが異動になるって噂だし。
+	それから、おなじ会社だと給料がばれるね。
+
+\item{Ｋ}いいことはなんですか？
+
+\item{Ｎ}うーん。
+	飯に困らない、朝一緒に来れる。
+	あんまりいいことでもないか。
+
+	あっ、会社からのご祝儀が２人分出る。
+	これが大きいんだねー、まったく。
+
+\item{Ｋ}せこいですね。
+	では、これから社内結婚してみようかな、なんて思ってる人に
+	なにかアドバイスをお願いします。
+
+\item{Ｎ}まっ、きちんと手順をふんで、焦らないことね。
+	それから、同じ部署は避ける。
+	上下のフロアは狙い目ね。
+	それから、秘密は保てないから、聞かれないことは喋らないことだね。
+
+\item{Ｋ}mailやtalkは秘密保持という点ではまずそうですね。
+
+\item{Ｎ}あとはね、車での激しい走りは禁物ね。
+
+\item{Ｋ}なるほど。
+	では、今日はほんとにありがとうございました。
+
+\item{Ｎ}でも、これほんとに夕刊 ▽▲☆ーに載るわけ？ %
+	俺知らないよ。
+	どっかのアホが真似して失敗したら教えてね。
+
+\item{Ｋ}えー。でもちゃんとＴさんのチェック入れときますから、安心ですよ。
+
+\item{Ｎ}$\cdots$
+
+\vfill
+}
+
+\nidan
+
+\end
