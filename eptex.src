@@ -1,6 +1,6 @@
-%% e-pTeX macro (2016/05/16)
+%% e-pTeX macro (2016/12/06)
 %% derived from $TEXMF/tex/plain/etex/etex.src (V2.1;0 01-FEB-1999)
-%% e-pTeX:   eptex *eptex.tex
+%% e-pTeX:   eptex *eptex.src
 
 % Assume a purely IniTeX environment and set up a minimal \catcode r\'egime
 
@@ -492,7 +492,13 @@
 \count 265=\@cclvi % globally allocates \toks registers 256, 257, ...
 \count 266=\@ne    % globally allocates \marks classes 1, 2, ...
 
-\def \et@xmaxregs {65536} % FAM256 patched (2016/05/16)
+% There may be (u)pTeX + e-pTeX which does not have
+% FAM256 patch (e.g. ptex-ng) (2016/12/06)
+\ifx \undefined \omathchar
+  \def \et@xmaxregs {32768}
+\else
+  \def \et@xmaxregs {65536} % FAM256 patched (2016/05/16)
+\fi
 
 \count 270=\et@xmaxregs % locally allocates \count registers 65535, 65534, ...
 \count 271=\et@xmaxregs % ditto for \dimen registers
