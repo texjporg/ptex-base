@@ -1,5 +1,5 @@
 The file sample.tex, derived from the old distribution of ASCII Nihongo
-TeX jtex1.7 distribution (jtex1.7/ptexptex/sample) by ASCII Corporation,
+TeX jtex1.7 distribution (jtex1.7/ptex/sample) by ASCII Corporation,
 is a sample TeX source using plain pTeX. The file is converted into
 ISO-2022-JP (JIS) encoding. For test purpose only.
 
