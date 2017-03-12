@@ -1,10 +1,10 @@
 % This is the pTeX format (community edition)
-%   last update: texjporg 2016/05/17
+%   last update: texjporg 2017/03/12
 %
 %       (C)copyright ASCII corporation,1987,1995,1997
 %
 \input plain
-\catcode`@=11 % at signs are no longer letters
+\catcode`@=11 % at signs act like letters
 \def\footnote#1{\let\@sf\empty % parameter #2 (the text) is read later
   \ifhmode\edef\@sf{\spacefactor\the\spacefactor}\/\fi
   \nobreak#1\@sf\vfootnote{#1}}
