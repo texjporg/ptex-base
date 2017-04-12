@@ -48,7 +48,8 @@
 \AtBeginDvi{\special{pdf:mapfile otf-ipaex.map}}
 \def\delbit#1#2{\underbracket[0.4pt]{#1}_{\text{#2}}}
 
-\def\TeXXeT{\TeX-\reflectbox{\bfseries \TeX-}}
+\def\TeXXeT{\TeX-\reflectbox{\TeX-}}
+\def\TeXXeTbf{\TeX-\reflectbox{\bfseries \TeX-}}
 
 \newenvironment{multilist}[2]%
  {$$\setbox\z@=\hbox\bgroup  % catch some funny things -> \mathord
@@ -279,7 +280,7 @@ ${}+{}$\verb+\@tempdima+$)/2$\hfill\null
 \.{eset}では，何も考えずに
 \.{left}, \.{middle}, \.{right}だけで実現できる．
 
-\paragraph{\TeXXeT\ \textmd{(\texttt{TeX-{}-XeT})}}
+\paragraph{\TeXXeTbf\ \textmd{(\texttt{TeX-{}-XeT})}}
 left-to-rightとright-to-leftを混植できるという機能であるらしい．
 ヘブライ語あたりの組版に使えるらしいが，よく知らない．
 ここでのRtoLはLtoRに組んだものを逆順にしているだけのような
