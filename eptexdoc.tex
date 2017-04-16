@@ -1,4 +1,4 @@
-%#!platex eptexdoc && mendex -s gind.ist eptexdoc.idx && ptex2pdf -l eptexdoc
+%#!make eptexdoc.pdf
 \documentclass[a4paper,11pt]{jsarticle}
 \input fam256p.tex
 \usepackage[textwidth=42zw,lines=40,truedimen,centering]{geometry}
@@ -28,7 +28,7 @@
 \def\ind@cs#1{\orig@cs{#1}\index{{\texttt{\textbackslash #1}}}}
 \newlist{cslist}{description}1
 \setlist[cslist]{%
-  style=nextline,itemsep=\medskipamount,
+  style=nextline,itemsep=\medskipamount,listparindent=1zw,
   font=\normalfont\mdseries}
 \def\csitem[#1]{\item[\llap{$\blacktriangleright$~}\let\.=\ind@cs#1]}
 \def\emph#1{{\bfseries\gtfamily\mathversion{bold}#1}}
@@ -505,13 +505,21 @@ delimiter code$B$r<hF@$7$h$&$H$7$F$b!$8=;~E@$N%Q%C%A$G$O!$$&$^$/F0:n$7$J$$(B
   $B%Z!<%8$N!VI}!W!V9b$5!W$rI=$9FbItD9$5$G$"$k$,!$(B
   \emph{$B$3$3$G8@$&!VI}!W$O!V;zAw$jJ}8~!W$N$3$H$G$O$J$/!$J*M}E*$J0UL#$G$"$k(B}$B!%(B
 
+  $B$3$N(B2$B$D$NFbItD9$5$r@_Dj$9$k$@$1$G$O(Bdvi$B$K2?$N1F6A$bM?$($J$$!%(B
+  $B$9$08e$G=R$Y$k(B\.{pdflastxpos}, \.{pdflastypos}$B$K$h$k=PNO0LCV$N<hF@(B
+   $B$N:]$N86E@0LCV$r@_Dj$9$k$?$a$@$1$K;H$o$l!$=i4|CM$O(B0$B$G$"$k!%(B
+
  \csitem[\.{pdflastxpos}, \.{pdflastypos}]
   \.{pdfsavepos}\index{\.{pdfsavepos}}$B$,CV$+$l$?>l=j$N!$(Bdvi$B$K$*$1$k=PNO0LCV$rJV$9FbIt@0?t!JFI$_<h$j@lMQ!K!%(B
-  $B86E@$O;f$N!JJ*M}E*$J0UL#$N!K:82<6y$G$"$j!$(B$y$$B<4$O!JJ*M}E*$J!K>eJ}8~$K8~$+$C$FA}2C$9$k!%(B
-
-  \pTeX $B$G$O2#AH!&=DAH$HAHJ}8~$,J#?t$"$k$N$G!$(B\.{pdflastxpos}, \.{pdflastypos}$B$NCM$N:BI87O$r(B
-  $B!VJ*M}E*$J!W8~$-$H$9$Y$-$+!$$=$l$H$b!VAHJ}8~$K1~$8$?!W8~$-$H$9$Y$-$+$OG:$_$I$3$m$G$"$k!%(B
-  110227$BHG0J9_!$8=:_$^$G$NHG$G$O>e5-$N$h$&$KJ*M}E*$J8~$-$H$7$F$$$k!%(B
+  $B86E@$O%Z!<%8$N!JJ*M}E*$J0UL#$N!K:82<6y$G$"$j!$(B$y$$B<4$O!JJ*M}E*$J!K>eJ}8~$K8~$+$C$FA}2C$9$k!%(B
+ \begin{itemize}
+  \item $B%Z!<%8$NJ*M}E*$JI}$H9b$5$O$9$0>e$N(B\.{pdfpagewidth}, \.{pdfpageheight}$B$G@_Dj$9$k!%(B
+	$B$3$l$i$NFbItD9$5$,(B0$B$G$"$C$?>l9g$O!$(B\.{shipout}$B$5$l$?%\%C%/%9$N@#K!$H(B
+	\.{hoffset}$B!J$^$?$O(B\.{voffset}$B!K$NCM$+$i<+F0E*$K7W;;$5$l$k!%(B
+  \item \pTeX $B$G$O2#AH!&=DAH$HAHJ}8~$,J#?t$"$k$N$G!$(B\.{pdflastxpos}, \.{pdflastypos}$B$NCM$N:BI87O$r(B
+	$B!VJ*M}E*$J!W8~$-$H$9$Y$-$+!$$=$l$H$b!VAHJ}8~$K1~$8$?!W8~$-$H$9$Y$-$+$OG:$_$I$3$m$G$"$k!%(B
+	110227$BHG0J9_!$8=:_$^$G$NHG$G$O>e5-$N$h$&$KJ*M}E*$J8~$-$H$7$F$$$k!%(B
+ \end{itemize}
   
  \csitem[\.{pdfcreationdate}]
   $B%(%s%8%s5/F0;~$N;~9o$r!$(B\texttt{\pdfcreationdate}$B$N7A<0$GI=$7$?J8;zNs$KE83+$9$k!%(B
@@ -547,6 +555,9 @@ delimiter code$B$r<hF@$7$h$&$H$7$F$b!$8=;~E@$N%Q%C%A$G$O!$$&$^$/F0:n$7$J$$(B
   $B0z?t(B<general text>$B$N(BMD5$B%O%C%7%eCM$+!$$"$k$$$O(B\texttt{file}$B$,;XDj$5$l$?>l9g$O(B
   $B%U%!%$%kL>$,(B<general text>$B$N%U%!%$%k$N(BMD5$B%O%C%7%eCM$r7W;;$9$k!%(B
 
+  $BA0<T$N!V0z?t$N(BMD5$B%O%C%7%eCM$r7W;;$9$k!W>l9g$K$O!$(B\.{pdfstrcmp}$B$HF1$8$h$&$K(B
+  $BOBJ8J8;z$r(BUTF-8$B$GId9f2=$7$F$+$i7W;;$9$k!%(B
+
   $B$3$N%W%j%_%F%#%V$O(B\cite{xe5}$B0J9_$N5DO@$r85$K!$3QF#$5$s$,%j%/%(%9%H$7$?$b$N$G!$(B
   2015/07/04$B$K(B\epTeX $B$K<BAu$5$l$F$$$k!%(B
   
@@ -566,7 +577,7 @@ delimiter code$B$r<hF@$7$h$&$H$7$F$b!$8=;~E@$N%Q%C%A$G$O!$$&$^$/F0:n$7$J$$(B
 
  \csitem[\.{pdfuniformdeviate} <number>, \.{pdfnormaldeviate}]
   \.{pdfuniformdeviate}$B$O!$(B0$B0J>e(B<number>$BL$K~$N0lMMJ,I[$K=>$&Mp?t!J@0?tCM!K$r@8@.$9$k!%(B
-  \.{pdfnormaldeviate}$B$O!$J?6QCM(B0$B!$I8=`JP:9(B65\,536$B$N@55,J,I[$K=>$&Mp?t!J@0?tCM!K$r@8@.$9$k!%(B
+  \.{pdfnormaldeviate}$B$O!$J?6QCM(B0$B!$I8=`JP:9(B65536$B$N@55,J,I[$K=>$&Mp?t!J@0?tCM!K$r@8@.$9$k!%(B
   
   $B8=:_$NMp?t@8@.$N<o$NCM$O!$(B\.{pdfrandomseed}\index{\.{pdfrandomseed}}$B$G<hF@$G$-$k!JFI$_<h$j@lMQ!K!%(B
   $B<o$N=i4|2=$K$O%7%9%F%`$N%^%$%/%mICC10L$G$N8=:_;~9o>pJs$,;H$o$l$k!%$^$?!$<o$NCM$O(B
@@ -577,7 +588,7 @@ delimiter code$B$r<hF@$7$h$&$H$7$F$b!$8=;~E@$N%Q%C%A$G$O!$$&$^$/F0:n$7$J$$(B
 
  \csitem[\.{pdfelapsedtime}, \.{pdfresettimer}]
   \.{pdfelapsedtime}$B$O!$%(%s%8%s5/F0$+$i$N7P2a;~4V$r(B``scaled seconds''$B$9$J$o$A(B
-  1/65536$BICC10L$GJV$9!%$3$NCM$O(B\.{pdfresettimer}$B$K$h$C$F:F$S(B0$B$K%j%;%C%H$G$-$k!%(B
+  $1/65536$$BICC10L$GJV$9!%$3$NCM$O(B\.{pdfresettimer}$B$K$h$C$F:F$S(B0$B$K%j%;%C%H$G$-$k!%(B
   $B$9$0>e$NMp?t@8@.%W%j%_%F%#%V$HF1;~$K<BAu$5$l$?!%(B
 \end{cslist}
 
@@ -643,7 +654,7 @@ min10$B%U%)%s%H%a%H%j%C%/$G!V$A$g$C$H!W$rAH$`$H!V$g$C!W$N4V$,5M$^$k$H$$$&IT6q9g
 }$B$,F@$i$l$k!%$3$l$K$h$C$F!$(B\.{textmc}$BEy$NL?Na$ND>A0$NJ8;z$rCN$k$3$H$,$G$-$k$N$G!$(B
 $B$"$H$O(B\TeX $B%^%/%mB&$G$J$s$H$+$G$-$k$@$m$&!$$H$$$&L\O@8+$G$"$k!%(B
 
-\newpage
+
 $B$^$?!$>e5-$N@bL@$K$"$k$H$*$j!$(B
 \begin{verbatim}
 abcfi\the\lastnodechar, abc\char"1C \the\lastnodechar
