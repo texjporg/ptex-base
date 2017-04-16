@@ -422,14 +422,18 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
 \medskip
 \LaTeX において数式フォントを同時に16個以上使うには，\.{omathchar}%
 などのプリミティブに対応したマクロを使う必要がある．
-最近の\LaTeX（少なくとも2016-01-01以降）では，
-\emph{\.{DeclareMathAlphabet}を用いて数式用アルファベットを使うだけなら}
-\begin{verbatim}
-\makeatletter
-\mathchardef\e@mathgroup@top=256
-\makeatother
-\end{verbatim}
-をプリアンブルに記述すれば良い．だが，これだけでは記号類の定義に用いられる
+最近の\pLaTeX（2016/11/29以降）はこれを部分的にサポートしていて，
+\emph{\.{DeclareMathAlphabet}で使うことのできる数式用アルファベットの
+上限だけは}256個に拡張されている．
+% もちろんこれには最近の\LaTeX（2015/01/01以降）が必要である．
+% また，少し前（2016/09/08以前）の\pLaTeX であれば
+% \begin{verbatim}
+% \makeatletter
+% \mathchardef\e@mathgroup@top=256
+% \makeatother
+% \end{verbatim}
+% をプリアンブルに記述する必要があった．
+だが，これだけでは記号類の定義に用いられる
 \.{DeclareMathSymbol}や\.{DeclareMathDelimiter}が\.{omathchar}や
 \.{odelcode}を使用しないので不十分である．
 実験的と書かれてはいるが，
