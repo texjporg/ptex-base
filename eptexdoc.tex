@@ -25,7 +25,8 @@
 \def\.#1{\texorpdfstring{%
      \leavevmode\hbox{\texttt{\textbackslash#1}}\ifmmode\else\textcompwordmark\fi}{\textbackslash #1}}
 \let\orig@cs=\.
-\def\ind@cs#1{\orig@cs{#1}\index{{\texttt{\textbackslash #1}}}}
+\def\ind@cs#1{\orig@cs{#1}\indcs{#1}}
+\def\indcs#1{\index{{\texttt{\textbackslash #1}}}}
 \newlist{cslist}{description}1
 \setlist[cslist]{%
   style=nextline,itemsep=\medskipamount,listparindent=1zw,
@@ -255,7 +256,7 @@ ${}+{}$\verb+\@tempdima+$)/2$\hfill\null
 \paragraph{\.{middle} primitive}
 \TeX に\.{left}, \.{right}というprimitiveがあり，それを使えば括
 弧の大きさが自動調整されるのはよく知られている．\eTeX では，
-さらに\.{middle}\index{\.{middle}}\ primitiveが追加された．
+さらに\.{middle}\indcs{middle}\ primitiveが追加された．
 
 具体例を述べる．
 \def\set#1#2{\setbox0=\hbox{$\displaystyle #1,#2$}%
@@ -311,7 +312,7 @@ tracing機能や条件判断文の強化などあるが，そこら辺はパッとしないのでここ
 \epTeX~110102 まではこれらのノードも\.{lastnodetype}の値として出力させるようにした．
 しかし，両者ともに\epTeX が自動的に挿入する（ユーザーが意識する必要はない）ノードであることから，
 \epTeX~110227以降では\node{dir\_node}と\node{disp\_node}は
-\.{lastnodetype}\index{\.{lastnodetype}}の対象とする「最後のノード」とはならないようにしている
+\.{lastnodetype}\indcs{lastnodetype}の対象とする「最後のノード」とはならないようにしている
 \footnote{%
   最後のノードが\node{dir\_node}であった場合，\.{lastnodetype}はそのノードが格納している
   \node{hlist\_node}か\node{vlist\_node}の種類を返す．
@@ -327,7 +328,7 @@ tracing機能や条件判断文の強化などあるが，そこら辺はパッとしないのでここ
 
 \vskip-\baselineskip
 
-\.{currentiftype}\index{\.{currentiftype}}における条件判断文とそれを表す数字との対応は，以
+\.{currentiftype}\indcs{currentiftype}における条件判断文とそれを表す数字との対応は，以
 下のようになっている．21--28が，\pTeX 拡張で追加された条件判断文に対応する．
 29の\.{ifpdfprimitive}は\hologo{pdfTeX}由来のプリミティブ（後述）である．
 \begin{multilist}{3}{\hfil\hskip1.5zw#:&\quad#\qquad\hfil}
@@ -510,7 +511,7 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
    の際の原点位置を設定するためだけに使われ，初期値は0である．
 
  \csitem[\.{pdflastxpos}, \.{pdflastypos}]
-  \.{pdfsavepos}\index{\.{pdfsavepos}}が置かれた場所の，dviにおける出力位置を返す内部整数（読み取り専用）．
+  \.{pdfsavepos}\indcs{pdfsavepos}が置かれた場所の，dviにおける出力位置を返す内部整数（読み取り専用）．
   原点はページの（物理的な意味の）左下隅であり，$y$軸は（物理的な）上方向に向かって増加する．
  \begin{itemize}
   \item ページの物理的な幅と高さはすぐ上の\.{pdfpagewidth}, \.{pdfpageheight}で設定する．
@@ -579,9 +580,9 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
   \.{pdfuniformdeviate}は，0以上<number>未満の一様分布に従う乱数（整数値）を生成する．
   \.{pdfnormaldeviate}は，平均値0，標準偏差65536の正規分布に従う乱数（整数値）を生成する．
   
-  現在の乱数生成の種の値は，\.{pdfrandomseed}\index{\.{pdfrandomseed}}で取得できる（読み取り専用）．
+  現在の乱数生成の種の値は，\.{pdfrandomseed}\indcs{pdfrandomseed}で取得できる（読み取り専用）．
   種の初期化にはシステムのマイクロ秒単位での現在時刻情報が使われる．また，種の値は
-  \.{pdfsetrandomseed} <number>\index{\.{pdfsetrandomseed}}によって特定の値に設定可能である．
+  \.{pdfsetrandomseed} <number>\indcs{pdfsetrandomseed}によって特定の値に設定可能である．
   
   \LaTeX3のl3fpにおいて，2016/11/12あたりから実装された乱数生成機能(\cite{random})を
   サポートするために161114版から実装された．
