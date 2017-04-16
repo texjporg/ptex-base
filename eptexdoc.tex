@@ -138,7 +138,7 @@
 \author{北川 弘典\null
 \thanks{\url{http://osdn.jp/projects/eptex/wiki/},\ 
 e-mail: \texttt{h\_kitagawa2001(at)yahoo.co.jp}}}
-\date{version 160201，\today}
+\date{version 161114，\today}
 \maketitle
 
 \tableofcontents
@@ -506,18 +506,21 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
   \emph{ここで言う「幅」は「字送り方向」のことではなく，物理的な意味である}．
 
  \csitem[\.{pdflastxpos}, \.{pdflastypos}]
-  \.{pdfsavepos}が置かれた場所の，dviにおける出力位置を返す内部整数（読み取り専用）．
+  \.{pdfsavepos}\index{\.{pdfsavepos}}が置かれた場所の，dviにおける出力位置を返す内部整数（読み取り専用）．
   原点は紙の（物理的な意味の）左下隅であり，$y$軸は（物理的な）上方向に向かって増加する．
 
   \pTeX では横組・縦組と組方向が複数あるので，\.{pdflastxpos}, \.{pdflastypos}の値の座標系を
   「物理的な」向きとすべきか，それとも「組方向に応じた」向きとすべきかは悩みどころである．
   110227版以降，現在までの版では上記のように物理的な向きとしている．
   
- \csitem[\.{pdfcreationdate}, \.{pdffilemoddate}, \.{pdffilesize}]
-  最初にこのプリミティブが実行された時刻を，\texttt{\pdfcreationdate}の形式で表した文字列に展開される．
+ \csitem[\.{pdfcreationdate}]
+  エンジン起動時の時刻を，\texttt{\pdfcreationdate}の形式で表した文字列に展開する．
   これは\Pkg{standalone}パッケージを\epTeX で扱うために2013/06/05に実装されたプリミティブであるが，
   現在時刻の「秒」まで得るためにも使用できる（\TeX 82では分単位でしか取得できない）．
   
+  \epTeX においてプリミティブを実装した当初は「最初にこのプリミティブが実行された時刻を…」と
+  していたが，161030版から\hologo{pdfTeX}と同じ挙動に修正した．
+
  \csitem[\.{pdffilemoddate} <filename>, \.{pdffilesize} <filename>]
   それぞれ<filename>の更新時刻（\.{pdfcreationdate}と同じ形式）と
   ファイルサイズを表す文字列に展開する．
@@ -540,7 +543,6 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
   
   本プリミティブは\TeX ユーザの集い2014でリクエストを受けて実装された(\cite{pdfse})．
   
-  
  \csitem[\.{pdfmdfivesum} {[\texttt{file}]} <general text>]
   引数<general text>のMD5ハッシュ値か，あるいは\texttt{file}が指定された場合は
   ファイル名が<general text>のファイルのMD5ハッシュ値を計算する．
@@ -562,6 +564,21 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
   (\cite{15715})ことを受けて実装されたものだが，
   現在ではこれらのプリミティブは使われていない．
 
+ \csitem[\.{pdfuniformdeviate} <number>, \.{pdfnormaldeviate}]
+  \.{pdfuniformdeviate}は，0以上<number>未満の一様分布に従う乱数（整数値）を生成する．
+  \.{pdfnormaldeviate}は，平均値0，標準偏差65\,536の正規分布に従う乱数（整数値）を生成する．
+  
+  現在の乱数生成の種の値は，\.{pdfrandomseed}\index{\.{pdfrandomseed}}で取得できる（読み取り専用）．
+  種の初期化にはシステムのマイクロ秒単位での現在時刻情報が使われる．また，種の値は
+  \.{pdfsetrandomseed} <number>\index{\.{pdfsetrandomseed}}によって特定の値に設定可能である．
+  
+  \LaTeX3のl3fpにおいて，2016/11/12あたりから実装された乱数生成機能(\cite{random})を
+  サポートするために161114版から実装された．
+
+ \csitem[\.{pdfelapsedtime}, \.{pdfresettimer}]
+  \.{pdfelapsedtime}は，エンジン起動からの経過時間を``scaled seconds''すなわち
+  1/65536秒単位で返す．この値は\.{pdfresettimer}によって再び0にリセットできる．
+  すぐ上の乱数生成プリミティブと同時に実装された．
 \end{cslist}
 
 \section{\.{lastnodechar}プリミティブ}
@@ -784,6 +801,9 @@ $3$\,sp）だが，どこか気になるところである．
  \bibitem{15715} tat tsan，「[expl3 / e(u)ptex] 2015/07/15 版 expl3 パッケージが
   、(u)platex で通らない」，\TeX~Forum，2015/07/26．\\
   \url{http://oku.edu.mie-u.ac.jp/tex/mod/forum/discuss.php?d=1632}
+ \bibitem{random} Joseph Wright, ``[tex-live] Random number primitives'',
+  2016/11/12,\\
+  \url{http://tug.org/pipermail/tex-live/2016-November/039436.html}
  \bibitem{eptexinputenc} 阿部 紀行，「2016年2月2日」，2016/02/02．\\
   \url{http://abenori.blogspot.jp/2016/02/e-ptexeptexinputencoding.html}．  
  \bibitem{etexman} The \NTS\!\ Team. \textit{The \eTeX\ manual} (v2.0). \\
