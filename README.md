@@ -4,9 +4,9 @@ The bundle contains plain TeX format and documents for pTeX and e-pTeX.
 
 ## Character encoding
 
-All the text files containing Japanese characters in ptex-texmf are
-encoded in ISO-2022-JP. This is because ISO-2022-JP encoded texts
-are most suitable for the traditional pTeX engine.
+All the text files containing Japanese characters in this repository
+are encoded in ISO-2022-JP. This is because ISO-2022-JP encoded
+texts are most suitable for the traditional pTeX engine.
 
 ## Repository
 
