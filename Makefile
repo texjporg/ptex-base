@@ -11,13 +11,14 @@ eptexdoc.pdf: eptexdoc.tex
 	platex $(KANJI) eptexdoc.tex
 	platex $(KANJI) eptexdoc.tex
 	dvipdfmx $(FONTMAP) eptexdoc.dvi
-	rm *.aux *.log *.toc *.idx *.ind *.ilg *.out eptexdoc.dvi
+	rm -f *.aux *.log *.toc *.idx *.ind *.ilg *.out eptexdoc.dvi
 
 .SUFFIXES: .tex .dvi .pdf
 .tex.dvi:
 	platex $(KANJI) $<
 	platex $(KANJI) $<
-	rm *.aux *.log
+	platex $(KANJI) $<
+	rm -f *.aux *.log *.toc
 .dvi.pdf:
 	dvipdfmx $(FONTMAP) $<
 
