@@ -4,7 +4,7 @@ FONTMAP = -f ipaex.map -f ptex-ipaex.map
 all: jfm.pdf jtex.pdf jtexdoc.pdf ptexdoc.pdf ptexskip.pdf \
 	eptexdoc.pdf #eptex_resume.pdf
 
-eptexdoc.pdf: eptexdoc.tex
+eptexdoc.pdf: eptexdoc.tex fam256p.tex fam256d.tex
 	platex $(KANJI) eptexdoc.tex
 	platex $(KANJI) eptexdoc.tex
 	mendex -J eptexdoc.idx
