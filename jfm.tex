@@ -22,7 +22,7 @@ TFM$B$r3HD%$7$?7A$K$J$C$F$$$k!#(B
 
 \subsection{JFM$B%U%!%$%k$N9=@.(B}
 JFM$B%U%!%$%kA4BN$N9=@.$O!"(B
-Table\ref{$B9=@.(B}(\pageref{$B9=@.(B}$B%Z!<%8(B)$B$K<($9$H$*$j$G$"$k!#(B \\
+Table~\ref{$B9=@.(B}(\pageref{$B9=@.(B}$B%Z!<%8(B)$B$K<($9$H$*$j$G$"$k!#(B \\
 $B$3$3$G(BTFM$B$H0[$J$k$N$O<!$NE@$G$"$k!#(B
 \begin{enumerate}
 \item {\it char\_type}$B$N%F!<%V%k$,IU$12C$($i$l$?$3$H!#(B
@@ -32,6 +32,14 @@ Table\ref{$B9=@.(B}(\pageref{$B9=@.(B}$B%Z!<%8(B)$B$K<($9$H$*$j$G$"$k!#(
 	$B%Q%i%a!<%?I=$,JQ99$5$l$F$$$k!#(B
 	$B$^$?!"%*%j%8%J%k$N(BTFM$B$H$N6hJL$N$?$a$K(Bid$B$rIU2C$7$F$$$k!#(B
 \end{enumerate}
+$B:G=i$N(B7$B%o!<%I$OH>%o!<%I$:$D$K6h@Z$i$l!"(B
+JFM$B%U%!%$%k$r9=@.$9$k(B14$B8D$NMWAG$N%5%$%:$,<}$a$i$l$F$$$k!#(B
+$B$3$l$i$NCM$O!"$9$Y$F(B$2^{15}$$B$h$j$b>.$5$$HsIi$NCM$G!"(B
+$B<!$N>r7o$rK~$?$7$F$$$J$1$l$P$J$i$J$$!'(B
+\begin{eqnarray*}
+bc &=& 0 \\
+lf &=& 7 + lh + (ec - bc + 1) + nw + nh + nd + ni + nl + nk + ng + np
+\end{eqnarray*}
 
 \subsection{char\_type}
 $B:#2s$N(B\TeX $B$NF|K\8l2=$K$*$$$F$O!"F10l$NJ8;zI}!"(B
@@ -55,7 +63,7 @@ JFM$B$G07$&$3$H$rL\E*$K;EMM3HD%$7$?!#(B}$B!#(B
 $B3JG<$7$F$$$?$,!"%-%c%i%/%?%?%$%W$N>e8B$O(B255$B$J$N$G!"<B$O$=$N>e0L%P%$%H$O(B
 $B>o$K(B{\tt 00}$B$G$"$C$?!#$3$N$3$H$rMxMQ$7!"F|K\8l(B\TeX{}$B3+H/%3%_%e%K%F%#$N(B
 $B?7;EMM$G$O!V$3$N(B{\tt 00}$B$,<B$O4A;z%3!<%I$N>e0L$@$C$?!W$H$$$&$3$H$K(B
-$B$7$F!"(B3$B%P%$%H0J>e!J(BU+10000$B0J>e!K$N4A;z%3!<%I$GITB-$9$k(B1$B%P%$%H$r3NJ]$7$?!#(B
+$B$7$F!"(B3$B%P%$%H!J(BU+10000$B0J>e!K$N4A;z%3!<%I$GITB-$9$k(B1$B%P%$%H$r3NJ]$7$?!#(B
 $B$3$l$K$h$j!"?7;EMM$O%*%j%8%J%k$N;EMM$N>e0L8_49$G$"$k$3$H$,J]>Z$5$l$F$$$k!#(B}$B!#(B
 $B%F!<%V%kFb$K$O%3!<%I$NCM$N=gHV$K<}$a$i$l$F$$$J$1$l$P$J$i$J$$!#(B
 $B$^$?$3$N%F!<%V%k$N@hF,$K$O!"%G%U%)%k%H$N%$%s%G%C%/%9$H$7$F(B
@@ -108,6 +116,7 @@ JFM$B$G07$&$3$H$rL\E*$K;EMM3HD%$7$?!#(B}$B!#(B
 	\end{itemize}
 \item{$BBh(B4$B%P%$%H(B} remainder
 \end{description}
+%
 \subsection{glue$B%F!<%V%k(B}
 3$B%o!<%I$G(B1$B$D$N%0%k!<$r9=@.$9$k!#(B
 $B3FCM$O!"(B$design size\times2^{-20}$$B$rC10L$H$7$FI=$9!#(B
@@ -116,12 +125,14 @@ JFM$B$G07$&$3$H$rL\E*$K;EMM3HD%$7$?!#(B}$B!#(B
 \item{$BBh(B2$B%o!<%I(B} stretch
 \item{$BBh(B3$B%o!<%I(B} shrink
 \end{description}
+%
 \subsection{param$B%F!<%V%k(B}
 \begin{description}
 \item{param[1]} italic slant$B!#(B
 \item{param[2][3][4]} $B4A;z%U%)%s%H4V$KA^F~$9$k%0%k!<$N%G%U%)%k%HCM!#(B
 \item{param[5][6][7]} $B4A;z(B--$B1Q;z%U%)%s%H4V$KA^F~$9$k%0%k!<$N%G%U%)%k%HCM!#(B
 \end{description}
+%
 \newpage
 \begin{table}[h]
 \begin{minipage}[b]{2in}
@@ -171,11 +182,11 @@ $ng$ & $np$ \\ \hline
 \begin{minipage}[b]{3.3in}
 \noindent
 \begin{tabular}{l}
-$id=$ JFM\_ID number. ($=11$) \\
+$id=$ JFM\_ID number. ($=11$ for yoko, $9$ for tate) \\
 $nt=$ number of words in the character type table. \\
 $lf=$ length of the entire file, in words. \\
 $lh=$ length of the header data, in words. \\
-$bc=$ smallest character type in the font. \\
+$bc=$ smallest character type in the font. ($=0$ for JFM) \\
 $ec=$ largest character type in the font. \\
 $nw=$ number of words in the width table. \\
 $nh=$ number of words in the height table. \\
