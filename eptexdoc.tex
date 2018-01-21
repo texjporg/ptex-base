@@ -139,7 +139,7 @@
 \author{北川 弘典\null
 \thanks{\url{http://osdn.jp/projects/eptex/wiki/},\ 
 e-mail: \texttt{h\_kitagawa2001(at)yahoo.co.jp}}}
-\date{version 161114，\today}
+\date{version 180121，\today}
 \maketitle
 
 \tableofcontents
@@ -174,7 +174,6 @@ e-mail: \texttt{h\_kitagawa2001(at)yahoo.co.jp}}}
 \item そうすると，\pTeX だけが制限をレジスタ制限を引きずっているのは世界
       から取り残されることになるのではないか．
 \end{itemize}
-\indent
 
 \section{\eTeX 拡張について}
 前に述べたように，\eTeX は\TeX の拡張の一つである．\eTeX のマニュアル
@@ -195,8 +194,9 @@ Meanwhile \eTeX\ intends to fill the gap between \TeX3 and the future
 
 \NTS がどうなったのか僕は知らない．しかし，少なくとも\eTeX 拡張自体は実用
 的な物であり，そのせいか$\aleph$~(Aleph), \hologo{pdfTeX}, \hologo{XeTeX}などの他の拡張
-にもマージされており，かなりの人が\eTeX 拡張を使うことができるようになっ
-ている．
+にもマージされており，ほとんどの人が\eTeX 拡張を使うことができるようになっ
+ている\footnote{\LaTeXe~2017-01-01からは，\LaTeXe のフォーマット作成段階から
+\eTeX 拡張が必須となった(\cite{l2e26})．}．
 
 \eTeX 拡張で追加される機能について，詳しくは\cite{etexman}を参照して欲し
 いが，\cite{h7k}中の4.2節「\eTeX の機能」から一部改変して引用する．
@@ -597,6 +597,24 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
   すぐ上の乱数生成プリミティブと同時に実装された．
 \end{cslist}
 
+\section{バージョン番号}
+\pTeX~p3.8.0に\.{ptexversion}が実装されたのと同時に，\epTeX でもバージョン番号を
+取得する\.{epTeXversion}プリミティブが180121版から追加された．
+
+\begin{cslist}
+ \csitem[\.{epTeXversion}]
+  \epTeX のバージョン番号（例えば180121）を内部整数で返す．\epTeX 起動時のバナーでは
+  \eTeX, \pTeX のバージョン番号も表示されるので，それを再現しようとすると以下のようになる．
+\begin{verbatim}
+This is e-pTeX, Version 3.14159265-%
+p\number\ptexversion.\number\ptexminorversion\ptexrevision-%
+\number\epTeXversion-\number\eTeXversion\eTeXrevision ...
+\end{verbatim}
+
+
+\end{cslist}
+
+
 \section{\.{lastnodechar}プリミティブ}
 本プリミティブは
 \TeX ユーザの集い2014でリクエストを受けて
@@ -701,8 +719,6 @@ abcfi\the\lastnodechar, abc\char"1C \the\lastnodechar
 \end{quote}
 となる．
 
-
-
 \section{\.{epTeXinputencoding}プリミティブ}
 現在読み込んでいるファイルの文字コードを切り替えるプリミティブであり，
 2016/02/01に阿部紀行さんによって実装された．詳細は実装者の解説記事
@@ -717,7 +733,6 @@ abcfi\the\lastnodechar, abc\char"1C \the\lastnodechar
   <encoding>の値は，基本的には\pTeX の\texttt{-kanji}オプションで指定できる値
   (\texttt{euc}, \texttt{sjis}, \texttt{jis}, \texttt{utf8})である．
 \end{cslist}
-
 
 \begin{comment}
   \section{互換性}
@@ -786,7 +801,7 @@ $3$\,sp）だが，どこか気になるところである．
   \url{https://osdn.jp/projects/eptex/document/resume/ja/1/resume.pdf}ほか，
   本pdfと同じディレクトリにある\texttt{resume.pdf}がそれにあたる．
  \bibitem{yamamoto} 山本 和義，「数式famの制限とluatex」，掲示板「\TeX\
-  Q\ \&\ A」，2009/02/12．
+  Q\ \&\ A」，2009/02/12．\\
   \url{http://oku.edu.mie-u.ac.jp/~okumura/texfaq/qa/52744.html}
  \bibitem{yamamoto2} 山本 和義，「Re: 数式famの制限とluatex」，掲示板「\TeX\
   Q\ \&\ A」，2009/02/16．
@@ -810,7 +825,7 @@ $3$\,sp）だが，どこか気になるところである．
   \textbackslash lastnodechar の実装」，\TeX~Forum，2014/11/19．
   \url{http://oku.edu.mie-u.ac.jp/tex/mod/forum/discuss.php?d=1435#p8053}
  \bibitem{lnc} 北川 弘典，「\textbackslash lastnodechar プリミティブについて」，2014/12/15．\\
- \url{https://osdn.jp/projects/eptex/wiki/lastnodechar}
+ \url{https://ja.osdn.net/projects/eptex/wiki/lastnodechar}
  \bibitem{xe5} Joseph Wright, ``[XeTeX] \textbackslash (pdf)mdfivesum'',
   2015/07/01,\\
   \url{http://tug.org/pipermail/xetex/2015-July/026044.html}
@@ -821,7 +836,7 @@ $3$\,sp）だが，どこか気になるところである．
   2016/11/12,\\
   \url{http://tug.org/pipermail/tex-live/2016-November/039436.html}
  \bibitem{eptexinputenc} 阿部 紀行，「2016年2月2日」，2016/02/02．\\
-  \url{http://abenori.blogspot.jp/2016/02/e-ptexeptexinputencoding.html}．  
+  \url{http://abenori.blogspot.jp/2016/02/e-ptexeptexinputencoding.html}．
  \bibitem{etexman} The \NTS\!\ Team. \textit{The \eTeX\ manual} (v2.0). \\
   \verb+$TEXMFDIST/doc/etex/base/etex_man.pdf+
  \bibitem{omegaman} J.\ Plaice, Y.\ Haralambous. \textit{Draft
@@ -829,9 +844,14 @@ $3$\,sp）だが，どこか気になるところである．
   \verb+$TEXMFDIST/doc/omega/base/doc-1.8.tex+
  \bibitem{pdftexman} H\`an Th\'{\^e} Th\`anh et al. \textit{The 
 	\hologo{pdfTeX}\ user manual}, 2015.\\
-  \verb+$TEXMFDIST/doc/pdftex/manual/pdftex-a.pdf+
+	 \verb+$TEXMFDIST/doc/pdftex/manual/pdftex-a.pdf+
+\bibitem{l2e26}
+	The \LaTeX3 Project Team, \textit{\LaTeX\ News Issue 26}, 2017.\\
+	\verb+$TEXMFDIST/source/latex/base/ltnews26.tex+, \\
+	\url{https://www.latex-project.org/news/latex2e-news/ltnews26.pdf}.
 \end{thebibliography}
 
+\newpage
 \printindex
 
 \newpage\scrollmode
