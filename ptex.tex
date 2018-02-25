@@ -1,5 +1,5 @@
 % This is the pTeX format (community edition)
-%   last update: texjporg 2017/03/12
+%   last update: texjporg 2017/10/18
 %
 %       (C)copyright ASCII corporation,1987,1995,1997
 %
@@ -43,13 +43,13 @@
 \newfam\tminfam % \tmin is family 10
 \newfam\tgtfam  % \tgt is family 11
 %
-\def\mc{\iftdir\fam\tminfam\tentmin\else\fam\minfam\tenmin\fi}%
+\def\mc{\iftdir\fam\tminfam\else\fam\minfam\fi\tentmin\tenmin}%
 \textfont\minfam=\tenmin\scriptfont\minfam=\sevenmin%
 \scriptscriptfont\minfam=\fivemin
 \textfont\tminfam=\tentmin\scriptfont\tminfam=\seventmin%
 \scriptscriptfont\tminfam=\fivetmin
 %
-\def\gt{\iftdir\fam\tgtfam\tentgt\else\fam\gtfam\tengt\fi}%
+\def\gt{\iftdir\fam\tgtfam\else\fam\gtfam\fi\tentgt\tengt}%
 \textfont\gtfam=\tengt\scriptfont\gtfam=\sevengt%
 \scriptscriptfont\gtfam=\fivegt
 \textfont\tgtfam=\tentgt\scriptfont\tgtfam=\seventgt%
@@ -65,4 +65,4 @@
 %
 % identifies the current format based on plain
 \def\fmtname{ptex}
-\edef\fmtversion{\fmtversion\space p1.0b}
+\edef\fmtversion{\fmtversion\space p1.0c}
