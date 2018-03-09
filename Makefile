@@ -1,9 +1,17 @@
+DOCTARGET = jfm eptexdoc
+# following documents are not maintained anymore;
+# even some descriptions might be different from
+# current status of pTeX
+#   jtex_asciimw jtexdoc_asciimw
+#   ptexdoc_asciimw ptexskip_asciimw
+#   eptex_resume
+PDFTARGET = $(addsuffix .pdf,$(DOCTARGET))
+DVITARGET = $(addsuffix .dvi,$(DOCTARGET))
 KANJI = -kanji=jis
 FONTMAP = -f ipaex.map -f ptex-ipaex.map
 TEXMF = $(shell kpsewhich -var-value=TEXMFHOME)
 
-all: jfm.pdf jtex.pdf jtexdoc.pdf ptexdoc.pdf ptexskip.pdf \
-	eptexdoc.pdf #eptex_resume.pdf
+all: $(PDFTARGET)
 
 eptexdoc.pdf: eptexdoc.tex fam256p.tex fam256d.tex
 	platex $(KANJI) eptexdoc.tex
@@ -42,4 +50,4 @@ install:
 	cp ./eptex.src ${TEXMF}/tex/ptex/ptex-base/
 	cp ./eptexdefs.lib  ${TEXMF}/tex/ptex/ptex-base/
 clean:
-	rm -f *.dvi *.pdf
+	rm -f $(DVITARGET) $(PDFTARGET)
