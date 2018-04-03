@@ -12,6 +12,7 @@
 \usepackage[bold,deluxe]{otf}
 \usepackage{hologo}
 \usepackage{makeidx}\makeindex
+\ifdefined\UseRawInputEncoding\UseRawInputEncoding\fi
 
 %%%%%%%%%%%%%%%%
 \makeatletter
@@ -49,8 +50,7 @@
 \AtBeginDvi{\special{pdf:mapfile otf-ipaex.map}}
 \def\delbit#1#2{\underbracket[0.4pt]{#1}_{\text{#2}}}
 
-\def\TeXXeT{\TeX-\reflectbox{\TeX-}}
-\def\TeXXeTbf{\TeX-\reflectbox{\bfseries \TeX-}}
+\def\TeXXeT{\TeX-\reflectbox{\bfseries\TeX-}}
 
 \newenvironment{multilist}[2]%
  {$$\setbox\z@=\hbox\bgroup  % catch some funny things -> \mathord
@@ -107,13 +107,15 @@
 \smallskipamount=.25\baselineskip
 
 \usepackage{etoolbox}
-\patchcmd\@verbatim\@totalleftmargin{\dimexpr\@totalleftmargin+3zw\relax}{}{}
-
 \newenvironment{curve}{%
-  \par\small\leftskip=\dimexpr\textwidth-44zw\relax\@totalleftmargin=\leftskip
+  \par\medskip
+  \bgroup\small\leftskip=\dimexpr\textwidth-44zw\relax\@totalleftmargin=\leftskip
   \parindent1zw\noindent\kern-\leftskip\hbox to\leftskip{\dbend\hss}%
+  \bigskipamount=\baselineskip
+  \medskipamount=.5\baselineskip
+  \smallskipamount=.25\baselineskip
   \everypar{\everypar{}}\ignorespaces
-}{\par\medskip}
+}{\par\egroup\medskip}
 
 \renewenvironment{theindex}{%
     \def\presectionname{}\def\postsectionname{}%
@@ -129,17 +131,63 @@
     \end{multicols}
     \clearpage
   }
+
+\patchcmd\@verbatim\@totalleftmargin{\dimexpr\@totalleftmargin+2zw\relax}{}{}
+\patchcmd\quote{\list{}}{\par\list{\topsep\medskipamount}}{}{}
+\patchcmd\@verbatim{\trivlist}{\trivlist\addvspace\medskipamount\noautoxspacing}{}{}
+\patchcmd\endverbatim{\endtrivlist}{\endtrivlist\addvspace\medskipamount}{}{}
+\expandafter\let\csname endverbatim*\endcsname =\endverbatim
+\patchcmd\verb{\ifmmode\hbox\else\leavevmode\vadjust{}\fi\bgroup}
+  {\ifmmode\else\leavevmode\vadjust{}\fi\hbox
+  \bgroup\textcompwordmark\noautoxspacing\noautospacing}{}{}
+\patchcmd\verb@egroup{\egroup}{\egroup\textcompwordmark}{}{}
+
+\usepackage{shortvrb}
+\MakeShortVerb*{|}
+%%%%%%%% macros for index (simplified from doc.sty)
+\newif\ifscan@allowed
+\def\dotfill{\leaders\hbox to.6em{\hss .\hss}\hskip\z@ plus1fill}%
+\def\pfill{\unskip~\dotfill\nobreak}
+
+\long\def\@footnotetext{%
+  \insert\footins\bgroup
+    \normalfont\footnotesize
+    \interlinepenalty\interfootnotelinepenalty
+    \splittopskip\footnotesep
+    \splitmaxdepth \dp\strutbox \floatingpenalty \@MM
+    \hsize\columnwidth \@parboxrestore
+    \protected@edef\@currentlabel{%
+       \csname p@footnote\endcsname\@thefnmark
+    }%
+    \color@begingroup
+      \@makefntext{%
+        \rule\z@\footnotesep\ignorespaces}%
+      \futurelet\next\fo@t}
+\def\fo@t{\ifcat\bgroup\noexpand\next \let\next\f@@t
+                                \else \let\next\f@t\fi \next}
+\def\f@@t{\bgroup\aftergroup\@foot\let\next}
+\def\f@t#1{#1\@foot}
+\def\@foot{\@finalstrut\strutbox\color@endgroup\egroup
+  \ifx\pltx@foot@penalty\@undefined\else
+    \ifhmode\null\fi
+    \ifnum\pltx@foot@penalty=\z@\else
+      \penalty\pltx@foot@penalty
+      \pltx@foot@penalty\z@
+    \fi
+  \fi}
+
 \makeatother
 %%%%%%%%%%%%%%%%
 
 \def\_{\leavevmode\vrule width .45em height -.2ex depth .3ex\relax}
+
 \frenchspacing
 \begin{document}
 \title{\emph{\epTeX $B$K$D$$$F(B}}
 \author{$BKL@n(B $B90E5(B\null
 \thanks{\url{http://osdn.jp/projects/eptex/wiki/},\ 
 e-mail: \texttt{h\_kitagawa2001(at)yahoo.co.jp}}}
-\date{version 180121$B!$(B\today}
+\date{version 180226$B!$(B\today}
 \maketitle
 
 \tableofcontents
@@ -227,11 +275,10 @@ Meanwhile \eTeX\ intends to fill the gap between \TeX3 and the future
 
 \paragraph{$B<0$,;HMQ2DG=$K(B}
 \TeX $B$K$*$1$k?tNL$N7W;;$O=<<B$7$F$$$k$H$O8@$$Fq$$!%Nc$($P!$(B
-
-\noindent\null\hfill\verb+\dimen123+${}\leftarrow($\verb+\dimen42+
-${}+{}$\verb+\@tempdima+$)/2$\hfill\null
-
-\noindent $B$H$$$&7W;;$r85!9$N(B\TeX $B$G=q$3$&$H$9$k$H!$(B
+\[
+\hbox{|\dimen123|}\leftarrow\frac12(\hbox{|\dimen42|}+\hbox{|\@tempdima|})
+\]
+$B$H$$$&7W;;$r85!9$N(B\TeX $B$G=q$3$&$H$9$k$H!$(B
 \begin{verbatim}
 \dimen123=\dimen42
 \advance\dimen123by\@tempdima
@@ -259,10 +306,11 @@ ${}+{}$\verb+\@tempdima+$)/2$\hfill\null
 $B$5$i$K(B\.{middle}\indcs{middle}\ primitive$B$,DI2C$5$l$?!%(B
 
 $B6qBNNc$r=R$Y$k!%(B
+{\catcode`\|12
 \def\set#1#2{\setbox0=\hbox{$\displaystyle #1,#2$}%
 \left\{\, \vphantom{\copy0}#1 \,\right|\!\left.\, \vphantom{\copy0}#2 \,\right\}}
 \def\eset#1#2{\left\{\, #1 \,\middle|\, #2 \,\right\}}
-\[ \set{n+\frac12}{n\in \omega} \eset{n+\frac12}{n\in \omega} \]
+\[ \set{n+\frac12}{n\in \omega} \eset{n+\frac12}{n\in \omega} \]}
 $B$3$l$O0J2<$N(Bsource$B$G=PNO$7$?$b$N$G$"$k!'(B
 
 {\narrowbaselines
@@ -274,14 +322,14 @@ ${}+{}$\verb+\@tempdima+$)/2$\hfill\null
 \[ \set{n+\frac12}{n\in \omega} \eset{n+\frac12}{n\in \omega} \]
 \end{verbatim}}
 $BN>J}$H$b=89g$NI=5-$r9T$&%3%^%s%I$G$"$k!%(B\TeX $BN.$N(B\.{set}$B$G$O(B2$B$D$N(B
-\.{left}, \.{right}$B$NAH$G<B8=$5$;$J$1$l$P$J$i$:!$$=$N$?$a$K(B$|$$B$N(B
+\.{left}, \.{right}$B$NAH$G<B8=$5$;$J$1$l$P$J$i$:!$$=$N$?$a$K(B{\catcode`\|=12$|$}$B$N(B
 $B:8B&$H1&B&$KF~$k<0$N:GBg@#K!$rB,Dj$9$k$H$$$&LLE]$JJ}K!$r;H$C$F$$$k!%$=$N(B
 $B>e!$$3$NDj5A$G$O(B\.{textstyle}$B0J2<$N?t<0!JJ8Cf?t<0$H$+!K$G$O$=$N$^(B
 $B$^;H$($:!$$=$l$K$bBP1~$5$;$h$&$H$9$k$HLLE]$K$J$k!%0lJ}!$(B\eTeX $BN.$N(B
 \.{eset}$B$G$O!$2?$b9M$($:$K(B
 \.{left}, \.{middle}, \.{right}$B$@$1$G<B8=$G$-$k!%(B
 
-\paragraph{\TeXXeTbf\ \textmd{(\texttt{TeX-{}-XeT})}}
+\paragraph{\TeXXeT\ \textmd{(\texttt{TeX-{}-XeT})}}
 left-to-right$B$H(Bright-to-left$B$r:.?"$G$-$k$H$$$&5!G=$G$"$k$i$7$$!%(B
 $B%X%V%i%$8l$"$?$j$NAHHG$K;H$($k$i$7$$$,!$$h$/CN$i$J$$!%(B
 $B$3$3$G$N(BRtoL$B$O(BLtoR$B$KAH$s$@$b$N$r5U=g$K$7$F$$$k$@$1$N$h$&$J(B
@@ -444,8 +492,7 @@ delimiter code$B$r<hF@$7$h$&$H$7$F$b!$8=;~E@$N%Q%C%A$G$O!$$&$^$/F0:n$7$J$$(B
 \TeX $B$G$O!$(Bglue$B$N?-=LNL$K(B\texttt{fil}, \texttt{fill}, \texttt{filll}
 $B$H$$$&(B3$B$D$NL58BBg$N%l%Y%k$,B8:_$7!$(B\texttt{l}$B$,B?$$$[$IL58BBg$N%*!<%@!<$,9b$/$J$C$F$$$?!%(B
 \OMEGA $B$G$O!$!V(Binter-letter spacing$B$N$?$a$K!W(B\texttt{fi}$B$H$$$&!$M-8B$H(B
-\texttt{fil}$B$NCf4V$K$"$?$kL58BBg$N%l%Y%k$,IU$12C$($i$l!$(B\.{hfi}, \.{vfi}$B$H$$$&(B2$B$D(B
-$B$N%W%j%_%F%#%V$bDI2C$5$l$?!%$=$3$G!$$3$NL58BBg%l%Y%k(B
+\texttt{fil}$B$NCf4V$K$"$?$kL58BBg$N%l%Y%k$,IU$12C$($i$l$?!%$=$3$G!$$3$NL58BBg%l%Y%k(B
 \texttt{fi}$B$b:NMQ$9$k$3$H$K$7$?!%(B
 
 \medskip
@@ -453,11 +500,16 @@ delimiter code$B$r<hF@$7$h$&$H$7$F$b!$8=;~E@$N%Q%C%A$G$O!$$&$^$/F0:n$7$J$$(B
 $B<BAuJ}K!$O!$Bg$^$+$K$O(B\OMEGA $B$G(B\texttt{fi}$B$N<BAu$r9T$C$F$$$k(Bchange file\
 \texttt{omfi.ch}$B$NDL$j$G$"$k$N$@$,!$$3$l$K(B\pTeX $B$d(B\eTeX $B$KH<$&>/!9$N=$@5$r9T$C$F$$$k!%(B
 \begin{itemize}
-\item $B%W%j%_%F%#%V(B\.{pagefistretch}$B$r?7$?$KDj5A$7$F$$$k!%(B
-\item \.{gluestretchorder}, \.{glueshrinkorder}$B$NF0:n$r(B\eTeX $B$N$=$l$H9g$o$;$?!%(B
-      $B6qBNE*$K$O!$$"$kE,Ev$J(Bglue~\.{someglue}$B$N?-$SNL$r(B<stretch>$B$H$*$/$H$-!$(B
+\item $B%W%j%_%F%#%V(B|\pagefistretch|, |\hfi|, |\vfi|$B$r?7$?$KDj5A$7$F$$$k(B
+\footnote{%
+      |\hfi|, |\vfi|$B$K$D$$$F$O(B\cite{omegaman}$B$K5-=R$,$"$k$,!$(B
+      \TeX~Live$B$K<}O?$5$l$F$$$k(B$\aleph$$B!J(B\OMEGA $B$O(B\TeX~Live$B$K<}O?$5$l$F$$$J$$!K$G$O(B
+      $B<BAu$5$l$F$$$J$$!%(B|\pagefistretch|$B$r<BAu$7$?$N$OKL@n$N40A4$J4*0c$$$G$"$k!%(B
+}$B!%(B
+\item |\gluestretchorder|, |\glueshrinkorder|$B$NF0:n$r(B\eTeX $B$N$=$l$H9g$o$;$?!%(B
+      $B6qBNE*$K$O!$$"$kE,Ev$J(Bglue~|\someglue|$B$N?-$SNL$r(B<stretch>$B$H$*$/$H$-!$(B
 \[
- \hbox{\.{gluestretchorder}\.{someglue}}=
+ \hbox{|\gluestretchorder\someglue|}=
 \begin{cases}
 0&<stretch>\text{$B$,9b!9(B\texttt{fi}$B%l%Y%k$NNL(B}\\
 1&<stretch>\text{$B$,$A$g$&$I(B\texttt{fil}$B%l%Y%k$NL58BNL(B}\\
@@ -523,7 +575,7 @@ delimiter code$B$r<hF@$7$h$&$H$7$F$b!$8=;~E@$N%Q%C%A$G$O!$$&$^$/F0:n$7$J$$(B
 	\.{hoffset}$B!J$^$?$O(B\.{voffset}$B!K$NCM$+$i<+F0E*$K7W;;$5$l$k!%(B
   \item \pTeX $B$G$O2#AH!&=DAH$HAHJ}8~$,J#?t$"$k$N$G!$(B\.{pdflastxpos}, \.{pdflastypos}$B$NCM$N:BI87O$r(B
 	$B!VJ*M}E*$J!W8~$-$H$9$Y$-$+!$$=$l$H$b!VAHJ}8~$K1~$8$?!W8~$-$H$9$Y$-$+$OG:$_$I$3$m$G$"$k!%(B
-	110227$BHG0J9_!$8=:_$^$G$NHG$G$O>e5-$N$h$&$KJ*M}E*$J8~$-$H$7$F$$$k!%(B
+	\epTeX~110227$B0J9_!$8=:_$^$G$N%P!<%8%g%s$G$O>e5-$N$h$&$KJ*M}E*$J8~$-$H$7$F$$$k!%(B
  \end{itemize}
   
  \csitem[\.{pdfcreationdate}]
@@ -589,7 +641,7 @@ delimiter code$B$r<hF@$7$h$&$H$7$F$b!$8=;~E@$N%Q%C%A$G$O!$$&$^$/F0:n$7$J$$(B
   \.{pdfsetrandomseed} <number>\indcs{pdfsetrandomseed}$B$K$h$C$FFCDj$NCM$K@_Dj2DG=$G$"$k!%(B
   
   \LaTeX3$B$N(Bl3fp$B$K$*$$$F!$(B2016/11/12$B$"$?$j$+$i<BAu$5$l$?Mp?t@8@.5!G=(B(\cite{random})$B$r(B
-  $B%5%]!<%H$9$k$?$a$K(B161114$BHG$+$i<BAu$5$l$?!%(B
+  $B%5%]!<%H$9$k$?$a$K(B\epTeX~161114$B$+$i<BAu$5$l$?!%(B
 
  \csitem[\.{pdfelapsedtime}, \.{pdfresettimer}]
   \.{pdfelapsedtime}$B$O!$%(%s%8%s5/F0$+$i$N7P2a;~4V$r(B``scaled seconds''$B$9$J$o$A(B
@@ -599,11 +651,11 @@ delimiter code$B$r<hF@$7$h$&$H$7$F$b!$8=;~E@$N%Q%C%A$G$O!$$&$^$/F0:n$7$J$$(B
 
 \section{$B%P!<%8%g%sHV9f(B}
 \pTeX~p3.8.0$B$K(B\.{ptexversion}$B$,<BAu$5$l$?$N$HF1;~$K!$(B\epTeX $B$G$b%P!<%8%g%sHV9f$r(B
-$B<hF@$9$k(B\.{epTeXversion}$B%W%j%_%F%#%V$,(B180121$BHG$+$iDI2C$5$l$?!%(B
+$B<hF@$9$k(B\.{epTeXversion}$B%W%j%_%F%#%V$,(B\epTeX~180121$B$+$iDI2C$5$l$?!%(B
 
 \begin{cslist}
  \csitem[\.{epTeXversion}]
-  \epTeX $B$N%P!<%8%g%sHV9f!JNc$($P(B180121$B!K$rFbIt@0?t$GJV$9!%(B\epTeX $B5/F0;~$N%P%J!<$G$O(B
+  \epTeX $B$N%P!<%8%g%sHV9f!JNc$($P(B\the\epTeXversion$B!K$rFbIt@0?t$GJV$9!%(B\epTeX $B5/F0;~$N%P%J!<$G$O(B
   \eTeX, \pTeX $B$N%P!<%8%g%sHV9f$bI=<($5$l$k$N$G!$$=$l$r:F8=$7$h$&$H$9$k$H0J2<$N$h$&$K$J$k!%(B
 \begin{verbatim}
 This is e-pTeX, Version 3.14159265-%
@@ -618,7 +670,7 @@ p\number\ptexversion.\number\ptexminorversion\ptexrevision-%
 \section{\.{lastnodechar}$B%W%j%_%F%#%V(B}
 $BK\%W%j%_%F%#%V$O(B
 \TeX $B%f!<%6$N=8$$(B2014$B$G%j%/%(%9%H$r<u$1$F(B
-$B<BAu$5$l$?(B(\cite{pdfse})$B%W%j%_%F%#%V$G!$(Bextended mode$B$G$7$+MxMQ$G$-$J$$!%(B
+$B<BAu$5$l$?(B(\cite{pdfse})$B%W%j%_%F%#%V$G!$(B\epTeX~141119$B0J9_$N(Bextended mode$B$GMxMQ2DG=$G$"$k!%(B
 $B>\:Y$JGX7J@bL@!&;EMM$O(B\cite{lnc}$B$K>y$k!%(B
 
 \pTeX $B$G$O(B
@@ -640,7 +692,7 @@ p\number\ptexversion.\number\ptexminorversion\ptexrevision-%
   W$B$H(Bo$B$N4V$N%+!<%K%s%0$,(B\.{relax}$B$K$h$C$FA^F~$5$l$J$/$J$C$?$3$H$,$o$+$k!%(B
 }$B$K$h$k!%(B
 min10$B%U%)%s%H%a%H%j%C%/$G!V$A$g$C$H!W$rAH$`$H!V$g$C!W$N4V$,5M$^$k$H$$$&IT6q9g$OM-L>$G$"$k$,!$(B
-$B!V(B\verb+$B$A$g(B{}$B$C$H(B+$B!W$H6u%0%k!<%W$r64$`$3$H$G2sHr$5$l$k$N$b!$F1$8M}M3$G$"$k!%(B
+$B!V(B|$B$A$g(B{}$B$C$H(B|$B!W$H6u%0%k!<%W$r64$`$3$H$G2sHr$5$l$k$N$b!$F1$8M}M3$G$"$k!%(B
 
 \medskip
 
@@ -689,9 +741,8 @@ abcfi\the\lastnodechar, abc\char"1C \the\lastnodechar
 $B$H$J$j!$8+$?L\$G$OF1$8!V(Bfi$B!W$,(B\.{lastnodechar}$B<B9T;~$N!V:G8e$N%N!<%I!W$G$"$k$+$N$h$&$K8+$($F$b!$(B
 $B$=$l$,9g;z$N>l9g!J:8B&!K$G$O(B\.{lastnodechar}$B$N<B9T7k2L$O:G8e$N9=@.MWAG!V(Bi$B!W$N%3!<%IHV9f(B105$B$H$J$k!%(B
 
-\medskip
 \begin{curve}
-  $B!V(B\verb+$B$3$l$O!$(B+$B!W$H%=!<%9Cf$KF~NO$7$?$H$-$N(B
+  $B!V(B|$B$3$l$O!$(B|$B!W$H%=!<%9Cf$KF~NO$7$?$H$-$N(B
   $B%N!<%I$N>uBV$r(B\.{showlists}$B$GD4$Y$F$_$k$H<!$N$h$&$K$J$C$F$*$j!$(B
   $BK\Ev$K0lHV:G8e$N%N!<%I$O(BJFM$B$K$h$C$FA^F~$5$l$kFsJ,6u$-$N6uGr(B
   $B!J!V!$!W$HDL>o$NOBJ8J8;z$N4V$KF~$k$O$:$N$b$N!K$G$"$k$3$H$,$o$+$k!%(B
@@ -718,6 +769,54 @@ abcfi\the\lastnodechar, abc\char"1C \the\lastnodechar
 $B$3$l$O!$(B\relax\sffamily{}\the\lastnodechar\textmc{$B!X$[$2E^@k8@!Y(B}$B!D!D(B
 \end{quote}
 $B$H$J$k!%(B
+
+\section{\.{lastnodechar}$B%W%j%_%F%#%V(B}
+platex/??$B$K$*$$$F!$!V:G8e$N%0%k!<$,(BJFM$B%0%k!<$@$1(B\.{unskip}$B$9$k!W=hM}$NI,MW@-$,(B
+$B=R$Y$i$l$?!%(B\epTeX $B$K$O$b$H$b$H:G8e$N%N!<%I$N<oJL$rJV$9(B\.{lastnodetype}$B%W%j%_%F%#%V$,(B
+$B$"$C$?$,!$$3$l$G$O:G8e$N%N!<%I$,%0%k!<$G$"$k$+$7$+$o$+$i$J$$!%(B
+$B$=$N$?$a!$(B\epTeX~180226$B$G(B\.{lastnodesubtype}$B%W%j%_%F%#%V$rDI2C$7$?!%(B
+
+\begin{cslist}
+ \csitem[\.{lastnodesubtype}]
+ $B8=:_9=C[Cf$N%j%9%H$N!V:G8e$N%N!<%I!W!J(B\.{lastnodechar}$B%W%j%_%F%#%V$HF1MM!K$N(B
+ subtype$BCM$rFbIt@0?t$H$7$FJV$9!%(B
+\begin{itemize}
+ \item $B!V:G8e$N%N!<%I!W$,J8;z%N!<%I$N$H$-$O(B0$B$,JV$k!%(B
+ \item $B8=:_9=C[Cf$N%j%9%H$,6u$N$H$-$O(B$-1$$B$,JV$k!%(B
+\end{itemize}
+\end{cslist}
+
+subtype$B$N6qBNE*$J?tCM$O>-Mh$N(B\epTeX $B$N;EMMJQ99$K$h$C$FJQ$o$k62$l$,$"$k$N$G!$(B
+$BK\%I%-%e%a%s%H$G$O6qBNE*$JCM$O5-=R$7$J$$!%(B
+$BNc$($P(B\pLaTeX~2018-04-01$B0J9_$G$O!$(BJFM$B%0%k!<$N(B|\lastnodetype|, |\lastnodesubtype|$B$NCM$r(B
+\begin{verbatim}
+\ifdefined\ucs\jfont\tenmin=upjisr-h at 9.62216pt
+\else\jfont\tenmin=min10\fi
+\tenmin\char\jis"214B\null\setbox0\lastbox%"
+\global\chardef\pltx@gluetype\lastnodetype
+\global\chardef\pltx@jfmgluesubtype\lastnodesubtype
+\end{verbatim}
+$B$N$h$&$KJ]B8$7!$!V:G8e$N%0%k!<$,(BJFM$B%0%k!<$N$H$-$@$1>C$9!WL?Na(B|\removejfmglue|$B$r(B
+\begin{verbatim}
+\protected\def\removejfmglue{%
+  \ifnum\lastnodetype=\pltx@gluetype\relax
+    \ifnum\lastnodesubtype=\pltx@jfmgluesubtype\relax
+      \unskip
+    \fi\fi}
+\end{verbatim}
+$B$H$7$FDj5A$7$F$$$k!%(B
+
+\begin{curve}
+ \TeX82$B$G$O%+!<%s$N(Bsubtype$B$O(B
+\begin{itemize}
+ \item $B%U%)%s%H$N%+!<%K%s%0$KM3Mh$9$k%+!<%s(B
+ \item |\kern|$B$K$h$C$FL@<(E*$KH/9T$5$l$?$+!$%$%?%j%C%/Jd@5(B(|\/|)$B$N%+!<%s(B
+ \item |\accent|$B$NFbIt=hM}$G%"%/%;%s%H$N0LCVJd@5$N$?$a$K:n$i$l$?%+!<%s(B
+\end{itemize}
+$B$N(B3$B<oN`$KJ,N`$7$F$$$k$,!$(B\pTeX $B7ONs$G$O$5$i$K(B
+$B!V(B|\kern|$B$K$h$C$FL@<(E*$KH/9T$5$l$?%+!<%s!W!V%$%?%j%C%/Jd@5(B(|\/|)$B$N%+!<%s!W$K(B
+$B0[$J$k(Bsubtype$B$r3d$jEv$F$F$$$k!%(B
+\end{curve}
 
 \section{\.{epTeXinputencoding}$B%W%j%_%F%#%V(B}
 $B8=:_FI$_9~$s$G$$$k%U%!%$%k$NJ8;z%3!<%I$r@Z$jBX$($k%W%j%_%F%#%V$G$"$j!$(B
@@ -760,7 +859,7 @@ compatibility mode$B$K$h$k=PNO$N0c$$$r8!>Z$9$k$H!$(BMemory usage$B$N0c$$$d%a%
 \par\vskip0.5\baselineskip\par
 
 $B<!$K!$(B\eTeX $B$K$O!$(B\eTeX $B$K$h$C$F3HD%$5$l$?ItJ,$rD4$Y$k!$F1MM$N(B
-\texttt{e-TRIP} test$B$,B8:_$9$k!%(B\pTeX $B7ONs$G$O!$(B\verb+\showbox+$B$J$I$G$$(B
+\texttt{e-TRIP} test$B$,B8:_$9$k!%(B\pTeX $B7ONs$G$O!$(B|\showbox|$B$J$I$G$$(B
 $B$A$$$AAHJ}8~$rI=<($9$k$N$G!$$=$l$r(B
 \begin{verbatim}
   $ alias sep='sed "s/, yoko direction//;s/yoko direction, //;\
@@ -838,16 +937,16 @@ $3$\,sp$B!K$@$,!$$I$3$+5$$K$J$k$H$3$m$G$"$k!%(B
  \bibitem{eptexinputenc} $B0$It(B $B5*9T!$!V(B2016$BG/(B2$B7n(B2$BF|!W!$(B2016/02/02$B!%(B\\
   \url{http://abenori.blogspot.jp/2016/02/e-ptexeptexinputencoding.html}$B!%(B
  \bibitem{etexman} The \NTS\!\ Team. \textit{The \eTeX\ manual} (v2.0). \\
-  \verb+$TEXMFDIST/doc/etex/base/etex_man.pdf+
+  |$TEXMFDIST/doc/etex/base/etex_man.pdf|
  \bibitem{omegaman} J.\ Plaice, Y.\ Haralambous. \textit{Draft
   documentation for the $\it\Omega$ system}, 1999.\\
-  \verb+$TEXMFDIST/doc/omega/base/doc-1.8.tex+
+  |$TEXMFDIST/doc/omega/base/doc-1.8.tex|
  \bibitem{pdftexman} H\`an Th\'{\^e} Th\`anh et al. \textit{The 
 	\hologo{pdfTeX}\ user manual}, 2015.\\
-	 \verb+$TEXMFDIST/doc/pdftex/manual/pdftex-a.pdf+
+	|$TEXMFDIST/doc/pdftex/manual/pdftex-a.pdf|
 \bibitem{l2e26}
 	The \LaTeX3 Project Team, \textit{\LaTeX\ News Issue 26}, 2017.\\
-	\verb+$TEXMFDIST/source/latex/base/ltnews26.tex+, \\
+	|$TEXMFDIST/source/latex/base/ltnews26.tex|, \\
 	\url{https://www.latex-project.org/news/latex2e-news/ltnews26.pdf}.
 \end{thebibliography}
 
