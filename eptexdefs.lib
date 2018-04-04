@@ -1,4 +1,4 @@
-%% e-pTeXlib
+%% e-pTeXlib (2018/03/12)
 %% derived from $TEXMF/tex/plain/etex/etexdefs.lib (V2.0;8 24-MAR-1998)
 
 \module {grouptypes}
@@ -87,5 +87,6 @@
 \etexifdef tboxif = 25
 \etexifdef yboxif = 26
 \etexifdef dboxif = 27
-\etexifdef pdfprimitiveif = 28
+\etexifdef mboxif = 28
+\etexifdef pdfprimitiveif = 29
 \endmodule

@@ -26,13 +26,13 @@ Table~\ref{構成}(\pageref{構成}ページ)に示すとおりである。
 $BここでTFMと異なるのは次の点である。
 \begin{enumerate}
 \item {\it char\_type}のテーブルが付け加えられたこと。
-\item {\it ligature}の換わりに{\it glue}のテーブルが設けられたこと。
+\item {\it exten}の換わりに{\it glue}のテーブルが設けられたこと。
 \item 2に関連して、{\it lig\_kern}から{\it glue\_kern}テーブルへ変更されたこと。
 \item これらに伴い、先頭のファイル内の各部分を規定する
 	パラメータ表が変更されている。
 	また、オリジナルのTFMとの区別のためにidを付加している。
 \end{enumerate}
-最初の7ワードは半ワードずつに区切られ、
+最初の7ワードは半ワード（＝2バイト）ずつに区切られ、
 JFMファイルを構成する14個の要素のサイズが収められている。
 これらの値は、すべて$2^{15}$よりも小さい非負の値で、
 次の条件を満たしていなければならない：
@@ -46,14 +46,14 @@ lf &=& 7 + lh + (ec - bc + 1) + nw + nh + nd + ni + nl + nk + ng + np
 高さ前後に挿入されるグルー等、その文字が持つ属性全てが
 同じものを、1つの{\it `char\_type'}として英字フォントの1キャラクタと
 同様にして扱うようにしている。
-そこで、漢字の2バイトコードとこの{\it char\_type}との対応付けを
+そこで、漢字の文字コードとこの{\it char\_type}との対応付けを
 このテーブルを使って行う。
 
 このテーブルの各エントリーは1ワード（＝4バイト）で構成され、
 上位3バイトに漢字コード、下位1バイトにキャラクタタイプを持つ
-\footnote{これが日本語\TeX{}開発コミュニティによる新仕様である；
-オリジナルのアスキーによる仕様では、「上位半ワードに漢字コード、
-下位半ワードにキャラクタタイプを持つ」というものであった。
+\footnote{これが日本語\TeX{}開発コミュニティによって2018年1月に導入された
+新仕様である；オリジナルのアスキーによる仕様では、「上位半ワードに
+漢字コード、下位半ワードにキャラクタタイプを持つ」というものであった。
 p\TeX{}では内部処理にJISが用いられ、JFMで扱う漢字コードは2バイトが
 上限だったため十分であったが、up\TeX{}でBMP超えの3バイトの文字を
 JFMで扱うことを目的に仕様拡張した。}。
@@ -79,27 +79,58 @@ JFMで扱うことを目的に仕様拡張した。}。
 各テーブルへのインデックス等の情報を次の順番でパッキング
 して1ワードに収めてある。
 \begin{description}
-\item{width\_index(8bits)} width\_table へのインデックス
-\item{height\_index(4bits)} height\_table へのインデックス
-\item{depth\_index(4bits)} depth\_table へのインデックス
-\item{italic\_index(6bits)} italic\_table へのインデックス
-\item{tag(2bits)}
+\item{{\it width\_index} (8bits)} width\_tableへのインデックス
+\item{{\it height\_index} (4bits)} height\_tableへのインデックス
+\item{{\it depth\_index} (4bits)} depth\_tableへのインデックス
+\item{{\it italic\_index} (6bits)} italic\_tableへのインデックス
+\item{{\it tag} (2bits)}
 	\begin{description}
-	\item{tag=0} {\it remainder}の項は無効であり使用しないことを示す。
-	\item{tag=1} {\it glue\_kern}プログラムが{\it glue\_kern[remainder]}
-		からに収められていることを示す。
-	\item{tag=2、3} 使用しない。
+	\item{${\it tag}=0$} {\it remainder}の項は無効であり
+		使用しないことを示す。
+	\item{${\it tag}=1$} {\it remainder}の項が{\it glue\_kern}への有効な
+		インデックスであることを示す。
+	\item{${\it tag}=2, 3$} JFMでは使用していない。
 	\end{description}
-\item{remainder(8bits)}
+\item{remainder (8bits)}
 \end{description}
-%
+JFMでは$bc$は必ずゼロ\footnote{前節にある通り、漢字コード及び
+キャラクタタイプの項が0のものが必ず1つ存在するため。}なので、
+1つのJFMに含まれる{\it char\_info}は全部で$ec+1$ワードになる。
+
 \subsection{glue\_kern}
-特定のキャラクタタイプの組み合せ時に挿入すべきglue又はkernを
+特定のキャラクタタイプの組み合せ時に挿入すべき{\it glue}又は{\it kern}を
 簡単なプログラム言語によって指定する。
 各命令は、以下の4バイトで構成される。
 \begin{description}
-\item{第1バイト} 128以上の時、このワードでプログラム終了。
-\item{第2バイト}
+\item{第1バイト({\it skip\_byte})}
+	\begin{itemize}
+	\item 128より大きいとき\\
+		現在のワードが{\it char\_info}から示された最初のワード
+		である場合は、実際の{\it glue\_kern}プログラムが
+		{\it glue\_kern}[$256*{\it op\_byte}+{\it remainder}$]から
+		収められている（すなわち、再配置されている）ことを示す
+		\footnote{「再配置」は、サイズが256を超える大きな
+		{\it glue\_kern}テーブルを格納するための方策であり、
+		欧文TFMの{\it lig\_kern}テーブルにおけるそれと同様である。
+		2018年2月に日本語\TeX{}開発コミュニティによって、
+		p\TeX{}及びpPLtoTFで新たにサポートされた。}。
+		最初のワードでない場合（すなわち、既に再配置先あるいは
+		プログラムのステップを開始した後のワードである場合）は、
+		その場でプログラムを終了する。
+	\item 128のとき\\
+		このワードを実行してプログラムを終了する。
+	\item 128より小さいとき\\
+		このワードを実行した後、次のステップまでスキップする
+		ワード数を示す
+		\footnote{「スキップ」(SKIP)は、元々アスキーの公式ページ
+		{\tt http://ascii.asciimw.jp/pb/ptex/tfm/jfm.html}に文書化
+		されてはいたが、実際には(p)PLtoTFの{\it glue\_kern}テーブル内で
+		SKIP命令を使用することができず、p\TeX{}もやはりSKIP命令を
+		サポートしていなかった。
+		2018年2月の日本語\TeX{}開発コミュニティの改修により、
+		新たにサポートが開始された。}。
+	\end{itemize}
+\item{第2バイト({\it char\_type})}
 	\begin{itemize}
 	\item 次の文字のキャラクタタイプが、
 		このバイトで示すキャラクタタイプ
@@ -108,17 +139,20 @@ JFMで扱うことを目的に仕様拡張した。}。
 		第3バイトの処理を実行し、プログラム終了。
 	\item そうでなければ次のステップへ。
 	\end{itemize}
-\item{第3バイト}
+\item{第3バイト({\it op\_byte})}\\
 	この値によってグルーを扱うかカーンを扱うかを規定する。
 	\begin{itemize}
 	\item 127以下の場合{\it glue[remainder$\times$3]}のグルーを挿入。
 	\item 128以上の場合{\it kern[remainder]}のカーンを挿入。
 	\end{itemize}
-\item{第4バイト} remainder
+\item{第4バイト({\it remainder})}\\
+	第3バイトにより規定される
+	{\it glue}または{\it kern}へのインデックスを示す。
 \end{description}
 %
 \subsection{glueテーブル}
-3ワードで1つのグルーを構成する。
+自然長、伸び長、縮み長の3ワードで1つのグルーを構成する
+（したがって、$ng$は必ず3の倍数となる）。
 各値は、$design size\times2^{-20}$を単位として表す。
 \begin{description}
 \item{第1ワード} width

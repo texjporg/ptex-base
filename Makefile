@@ -1,8 +1,17 @@
+DOCTARGET = jfm eptexdoc
+# following documents are not maintained anymore;
+# even some descriptions might be different from
+# current status of pTeX
+#   jtex_asciimw jtexdoc_asciimw
+#   ptexdoc_asciimw ptexskip_asciimw
+#   eptex_resume
+PDFTARGET = $(addsuffix .pdf,$(DOCTARGET))
+DVITARGET = $(addsuffix .dvi,$(DOCTARGET))
 KANJI = -kanji=jis
 FONTMAP = -f ipaex.map -f ptex-ipaex.map
+TEXMF = $(shell kpsewhich -var-value=TEXMFHOME)
 
-all: jfm.pdf jtex.pdf jtexdoc.pdf ptexdoc.pdf ptexskip.pdf \
-	eptexdoc.pdf #eptex_resume.pdf
+all: $(PDFTARGET)
 
 eptexdoc.pdf: eptexdoc.tex fam256p.tex fam256d.tex
 	platex $(KANJI) eptexdoc.tex
@@ -22,6 +31,23 @@ eptexdoc.pdf: eptexdoc.tex fam256p.tex fam256d.tex
 .dvi.pdf:
 	dvipdfmx $(FONTMAP) $<
 
-.PHONY: clean
+.PHONY: install clean
+install:
+	mkdir -p ${TEXMF}/doc/ptex/ptex-base
+	cp ./LICENSE ${TEXMF}/doc/ptex/ptex-base/
+	cp ./README* ${TEXMF}/doc/ptex/ptex-base/
+	cp ./Makefile ${TEXMF}/doc/ptex/ptex-base/
+	cp ./*.pdf ${TEXMF}/doc/ptex/ptex-base/
+	ls ./*.tex | \
+	grep -v ptex.tex | grep -v ascii-jplain.tex | grep -v kinsoku.tex | \
+	xargs -I % cp % ${TEXMF}/doc/ptex/ptex-base/
+	cp ./Change* ${TEXMF}/doc/ptex/ptex-base/
+	mkdir -p ${TEXMF}/tex/ptex/ptex-base
+	cp ./ptex.tex ${TEXMF}/tex/ptex/ptex-base/
+	cp ./ascii-jplain.tex ${TEXMF}/tex/ptex/ptex-base/
+	cp ./kinsoku.tex ${TEXMF}/tex/ptex/ptex-base/
+	cp ./*.ini ${TEXMF}/tex/ptex/ptex-base/
+	cp ./eptex.src ${TEXMF}/tex/ptex/ptex-base/
+	cp ./eptexdefs.lib  ${TEXMF}/tex/ptex/ptex-base/
 clean:
-	rm -f *.dvi *.pdf
+	rm -f $(DVITARGET) $(PDFTARGET)
