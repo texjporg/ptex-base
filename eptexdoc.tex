@@ -7,12 +7,11 @@
 \usepackage[T1]{fontenc}
 \usepackage{booktabs,enumitem}
 \usepackage{lmodern}
-\usepackage[dvipdfmx]{hyperref}
+\usepackage[dvipdfmx,hyperfootnotes=false]{hyperref}
 \usepackage{pxjahyper}
 \usepackage[bold,deluxe]{otf}
 \usepackage{hologo}
 \usepackage{makeidx}\makeindex
-\ifdefined\UseRawInputEncoding\UseRawInputEncoding\fi
 
 %%%%%%%%%%%%%%%%
 \makeatletter
@@ -262,13 +261,13 @@ Meanwhile \eTeX\ intends to fill the gap between \TeX3 and the future
 
 \paragraph{レジスタの増加}
 最初に述べたように，\TeX では6種類のレジスタが各256個ずつ利用できる．それ
-ぞれのレジスタには\.{dimen75}などのように0\,〜\,255の番号で指定できる
+ぞれのレジスタには\.{dimen75}などのように0--255の番号で指定できる
 他，予め別名の定義をしておけばそれによって指定することもできる．これらの
 いくつかは特殊な用途に用いられる（例えば\.{count0}はページ番号などの
 ように）ことになっているので，さらにuser が使えるレジスタは減少する．
 
-\eTeX では，追加のレジスタとして番号で言うと256\,〜\,32767が使用できるよ
-うになった．上のpdfによると最初の0\,〜\,255と違って若干の制限はあるようだ
+\eTeX では，追加のレジスタとして番号で言うと256--32767が使用できるよ
+うになった．上のpdfによると最初の0--255と違って若干の制限はあるようだ
 が，それは些細な話である．追加された（各種類あたり）$32768-256=32512$個の
 レジスタは，メモリの効率を重視するためsparse registerとして，つまり，必要
 な時に始めてツリー構造の中で確保されるようになっている．
@@ -557,7 +556,14 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
 \begin{verbatim}
 \pdfstrcmp{あ}{^^e3^^81^^83} % 「あ」はUTF-8でE38182
 \end{verbatim}
-  の実行結果は$\pdfstrcmp{あ}{^^e3^^81^^83}$である．
+  の実行結果は
+    {\ifdefined\UseRawInputEncoding\UseRawInputEncoding\fi
+    $\pdfstrcmp{あ}{^^e3^^81^^83}$}%
+  である\footnote{%
+    \LaTeX~2018-04-01以降では標準でUTF-8入力となった（|\usepackage[utf8]{inputenc}|が自動
+    で行われていることに相当する）関係上，本文に述べた入力例を実行する際には
+    |\UseRawInputEncoding|の実行が必要になる．
+  }．
 
  \csitem[\.{pdfpagewidth}, \.{pdfpageheight}]
   ページの「幅」「高さ」を表す内部長さであるが，
