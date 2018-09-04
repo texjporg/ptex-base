@@ -186,7 +186,7 @@
 \author{北川 弘典\null
 \thanks{\url{http://osdn.jp/projects/eptex/wiki/},\ 
 e-mail: \texttt{h\_kitagawa2001(at)yahoo.co.jp}}}
-\date{version 180226，\today}
+\date{version 180901，\today}
 \maketitle
 
 \tableofcontents
@@ -573,6 +573,30 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
   すぐ後で述べる\.{pdflastxpos}, \.{pdflastypos}による出力位置の取得
    の際の原点位置を設定するためだけに使われ，初期値は0である．
 
+ 用紙サイズの指定には伝統的にpapersize specialが利用されてきた．それを考慮して，
+ papersize specialがdvi中に書き出される時，\epTeX にはその内容を解釈して
+ 自動的に\.{pdfpagewidth}, \.{pdfpageheight}の値を設定する機能がある
+ \footnote{%
+ papersize specialで指定した長さは常に\texttt{true}付きで解釈するのが慣習と
+ なっているが，\epTeX~180901より前では\texttt{true}なしの寸法として解釈するという
+ バグが存在した．}%
+ \footnote{%
+   dviwareによって正確な書式は異なるようだが，\epTeX~180901が解釈するpapersize specialは
+以下の文法に沿ったものになっている：
+\def\<#1>{\langle\mbox{#1}\rangle}
+\begin{align*}
+  \<special> &\longrightarrow \texttt{papersize=}\<length>\texttt{,}\<length>\\
+  \<length>  &\longrightarrow \<decimal> 
+    \<optional~\texttt{true}>\<physical unit>\\
+  \<decimal> &\longrightarrow \texttt{.} \mid \<digit>\<decimal> \mid
+    \<decimal>\<digit>
+\end{align*}
+負の符号や小数点としての「\texttt{,}」，そして一切の空白を許容しないところに
+注目してほしい．
+ }．\epTeX~180901より前ではこの機能は常に有効
+ であったが，\epTeX~180901以降では内部整数\.{readpapersizespecial}（既定値は1）
+ が正の場合のみ有効となる．
+ 
  \csitem[\.{pdflastxpos}, \.{pdflastypos}]
   \.{pdfsavepos}\indcs{pdfsavepos}が置かれた場所の，dviにおける出力位置を返す内部整数（読み取り専用）．
   原点はページの（物理的な意味の）左下隅であり，$y$軸は（物理的な）上方向に向かって増加する．
@@ -583,6 +607,11 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
   \item \pTeX では横組・縦組と組方向が複数あるので，\.{pdflastxpos}, \.{pdflastypos}の値の座標系を
 	「物理的な」向きとすべきか，それとも「組方向に応じた」向きとすべきかは悩みどころである．
 	\epTeX~110227以降，現在までのバージョンでは上記のように物理的な向きとしている．
+  \item \.{mag}を用いてページの拡大縮小を行い，かつ
+	dvipsやdvipdfmxを用いてPostScript,~pdfを生成した場合，\.{pdflast\{x,y\}pos}の原点は
+	ページの左下隅から左・上方向にそれぞれ$1\,\mathrm{in}-1\,\mathrm{truein}$%
+	移動したところになる
+	\footnote{これは\hologo{pdfTeX}のdviモードや\hologo{XeTeX}と同じ挙動である．}．
  \end{itemize}
   
  \csitem[\.{pdfcreationdate}]
