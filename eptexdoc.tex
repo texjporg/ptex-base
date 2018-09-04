@@ -571,18 +571,18 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
 
   この2つの内部長さを設定するだけではdviに何の影響も与えない．
   すぐ後で述べる\.{pdflastxpos}, \.{pdflastypos}による出力位置の取得
-   の際の原点位置を設定するためだけに使われ，初期値は0である．
+  の際の原点位置を設定するためだけに使われ，初期値は0である．
 
- 用紙サイズの指定には伝統的にpapersize specialが利用されてきた．それを考慮して，
- papersize specialがdvi中に書き出される時，\epTeX にはその内容を解釈して
- 自動的に\.{pdfpagewidth}, \.{pdfpageheight}の値を設定する機能がある
- \footnote{%
- papersize specialで指定した長さは常に\texttt{true}付きで解釈するのが慣習と
- なっているが，\epTeX~180901より前では\texttt{true}なしの寸法として解釈するという
- バグが存在した．}%
- \footnote{%
-   dviwareによって正確な書式は異なるようだが，\epTeX~180901が解釈するpapersize specialは
-以下の文法に沿ったものになっている：
+  用紙サイズの指定には伝統的にpapersize specialが利用されてきた．それを考慮して，
+  papersize specialがdvi中に書き出される時，\epTeX にはその内容を解釈して
+  自動的に\.{pdfpagewidth}, \.{pdfpageheight}の値を設定する機能がある
+  \footnote{%
+  papersize specialで指定した長さは常に\texttt{true}付きで解釈するのが慣習と
+  なっているが，\epTeX~180901より前では\texttt{true}なしの寸法として解釈するという
+  バグが存在した．}%
+  \footnote{%
+  dviwareによって正確な書式は異なるようだが，\epTeX~180901が解釈するpapersize specialは
+  以下の文法に沿ったものになっている：
 \def\<#1>{\langle\mbox{#1}\rangle}
 \begin{align*}
   \<special> &\longrightarrow \texttt{papersize=}\<length>\texttt{,}\<length>\\
@@ -591,11 +591,11 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
   \<decimal> &\longrightarrow \texttt{.} \mid \<digit>\<decimal> \mid
     \<decimal>\<digit>
 \end{align*}
-負の符号や小数点としての「\texttt{,}」，そして一切の空白を許容しないところに
-注目してほしい．
- }．\epTeX~180901より前ではこの機能は常に有効
- であったが，\epTeX~180901以降では内部整数\.{readpapersizespecial}（既定値は1）
- が正の場合のみ有効となる．
+  負の符号や小数点としての「\texttt{,}」，そして一切の空白を許容しないところに
+  注目してほしい．
+  }．\epTeX~180901より前ではこの機能は常に有効
+  であったが，\epTeX~180901以降では内部整数
+  \.{readpapersizespecial}\indcs{readpapersizespecial}（既定値は1）が正の場合のみ有効となる．
  
  \csitem[\.{pdflastxpos}, \.{pdflastypos}]
   \.{pdfsavepos}\indcs{pdfsavepos}が置かれた場所の，dviにおける出力位置を返す内部整数（読み取り専用）．
