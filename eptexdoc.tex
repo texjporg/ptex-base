@@ -16,7 +16,8 @@
 %%%%%%%%%%%%%%%%
 \makeatletter
 \newcommand{\OMEGA}{$\Omega$}
-\def\epTeX{$\varepsilon$-\pTeX}\def\eTeX{$\varepsilon$-\TeX}
+\protected\def\epTeX{$\varepsilon$\nobreakdash-\pTeX}
+\protected\def\eTeX{$\varepsilon$\nobreakdash-\TeX}
 \def\upTeX{u\pTeX}\def\pTeX{p\kern-.15em\TeX}
 \def\NTS{\leavevmode\hbox{$\cal N\kern-0.35em\lower0.5ex\hbox{$\cal T$}%
   \kern-0.2emS$}\,}
@@ -175,27 +176,29 @@
     \fi
   \fi}
 
+{\lccode`\!=`\_
+\lowercase{%
+\protected\gdef\_{\ifdefstrequal{\f@family}{\ttdefault}{!}%
+  {\leavevmode\vrule width .45em height -.2ex depth .3ex\relax}%
+}}
+}
 \makeatother
 %%%%%%%%%%%%%%%%
-
-\def\_{\leavevmode\vrule width .45em height -.2ex depth .3ex\relax}
-
 \frenchspacing
 \begin{document}
 \title{\emph{\epTeX について}}
 \author{北川 弘典\null
 \thanks{\url{http://osdn.jp/projects/eptex/wiki/},\ 
 e-mail: \texttt{h\_kitagawa2001(at)yahoo.co.jp}}}
-\date{version 180901，\today}
+\date{version 190131，\today}
 \maketitle
-
 \tableofcontents
 
 \newpage
 \section{はじめに}
 \epTeX は，東京大学理学部数学科3年生対象の2007年度の授業「計算数学II」
 \footnote{\url{http://ks.ms.u-tokyo.ac.jp/}．}において北川が作成したプログ
-ラムである．もともとは\pTeX\ 3.1.10を基盤として，\eTeX\ 2.2相当の機能や
+ラムである．もともとは\pTeX~3.1.10を基盤として，\eTeX~2.2相当の機能や
 10進21桁の浮動小数点演算を追加したものであったが，今では次の点が変わっている．
 \begin{itemize}
   \item \TeX~Live~2011に取り込まれるにあたり，
@@ -592,7 +595,8 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
     \<decimal>\<digit>
 \end{align*}
   負の符号や小数点としての「\texttt{,}」，そして一切の空白を許容しないところに
-  注目してほしい．
+  注目してほしい．また，\texttt{zw},~\texttt{zh},~\texttt{em},~\texttt{ex}という
+  現在のフォントに依存する単位も使用不可能である．
   }．\epTeX~180901より前ではこの機能は常に有効
   であったが，\epTeX~180901以降では内部整数
   \.{readpapersizespecial}\indcs{readpapersizespecial}（既定値は1）が正の場合のみ有効となる．
@@ -620,7 +624,7 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
   現在時刻の「秒」まで得るためにも使用できる（\TeX 82では分単位でしか取得できない）．
   
   \epTeX においてプリミティブを実装した当初は「最初にこのプリミティブが実行された時刻を…」と
-  していたが，161030版から\hologo{pdfTeX}と同じ挙動に修正した．
+  していたが，\epTeX~161030から\hologo{pdfTeX}と同じ挙動に修正した．
 
  \csitem[\.{pdffilemoddate} <filename>, \.{pdffilesize} <filename>]
   それぞれ<filename>の更新時刻（\.{pdfcreationdate}と同じ形式）と
@@ -683,6 +687,15 @@ delimiter codeを取得しようとしても，現時点のパッチでは，うまく動作しない
   \.{pdfelapsedtime}は，エンジン起動からの経過時間を``scaled seconds''すなわち
   $1/65536$秒単位で返す．この値は\.{pdfresettimer}によって再び0にリセットできる．
   すぐ上の乱数生成プリミティブと同時に実装された．
+
+ \csitem[\.{expanded} <general text>]
+  （\.{message}が行うのと同様に）<general text>を完全展開した結果のトークン列を返す．
+
+  この命令は元々は\hologo{pdfTeX}に実装計画があったそうである(\cite{expanded})が，
+  しばらくの間\hologo{LuaTeX}にのみ実装されていた命令であった．
+  しかし\cite{expanded1}をきっかけに，
+  \hologo{pdfTeX}, \epTeX, \hologo{XeTeX}で一斉に実装された．
+  \epTeX~180518以降で利用可能である．
 \end{cslist}
 
 \section{バージョン番号}
@@ -1032,6 +1045,13 @@ $3$\,sp）だが，どこか気になるところである．
 \bibitem{plt63} Dora TeX，
 	「p 指定の tabular でのセル冒頭の |\relax\par|」，2018/02/19．\\
 	\url{https://github.com/texjporg/platex/issues/63}．
+ \bibitem{expanded1} Joseph Wright, 
+  ``[tex-live] Primitive parity, |\expanded| and |\Ucharcat|'',
+  2018/05/04,\\
+  \url{http://tug.org/pipermail/tex-live/2018-May/041599.html}
+\bibitem{expanded}
+  Joseph Wright, ``A `new' primitive: |\expanded|'', 2018/12/06.\\
+  \url{https://www.texdev.net/2018/12/06/a-new-primitive-expanded}
 \end{thebibliography}
 
 \newpage
