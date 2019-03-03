@@ -1,7 +1,9 @@
 # ptex-base
 
 The bundle contains plain TeX format for pTeX and e-pTeX.
-Documentation for pTeX and e-pTeX are included in ptex-manual bundle.
+Documentation for pTeX and e-pTeX are included in ptex-manual bundle
+([CTAN](https://ctan.org/pkg/ptex-manual),
+[GitHub](https://github.com/texjporg/ptex-manual)).
 
 ## Character encoding
 
