@@ -1,6 +1,7 @@
 # ptex-base
 
-The bundle contains plain TeX format and documents for pTeX and e-pTeX.
+The bundle contains plain TeX format for pTeX and e-pTeX.
+Documentation for pTeX and e-pTeX are included in ptex-manual bundle.
 
 ## Character encoding
 
