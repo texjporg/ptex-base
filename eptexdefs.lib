@@ -1,4 +1,4 @@
-%% e-pTeXlib (2018/03/12)
+%% e-pTeXlib (2018/07/13)
 %% derived from $TEXMF/tex/plain/etex/etexdefs.lib (V2.0;8 24-MAR-1998)
 
 \module {grouptypes}
@@ -80,13 +80,14 @@
 \etexifdef definedif = 18
 \etexifdef csnameif = 19
 \etexifdef fontcharif = 20
-\etexifdef tdirif = 21
-\etexifdef ydirif = 22
-\etexifdef ddirif = 23
-\etexifdef mdirif = 24
-\etexifdef tboxif = 25
-\etexifdef yboxif = 26
-\etexifdef dboxif = 27
-\etexifdef mboxif = 28
-\etexifdef pdfprimitiveif = 29
+\etexifdef incsnameif = 21
+\etexifdef pdfprimitiveif = 22
+\etexifdef tdirif = 23
+\etexifdef ydirif = 24
+\etexifdef ddirif = 25
+\etexifdef mdirif = 26
+\etexifdef tboxif = 27
+\etexifdef yboxif = 28
+\etexifdef dboxif = 29
+\etexifdef mboxif = 30
 \endmodule
