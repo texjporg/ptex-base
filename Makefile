@@ -10,7 +10,6 @@ install:
 	mkdir -p ${TEXMF}/doc/ptex/ptex-base
 	cp ./LICENSE ${TEXMF}/doc/ptex/ptex-base/
 	cp ./README* ${TEXMF}/doc/ptex/ptex-base/
-	cp ./Makefile ${TEXMF}/doc/ptex/ptex-base/
 	#cp ./Change* ${TEXMF}/doc/ptex/ptex-base/
 	mkdir -p ${TEXMF}/tex/ptex/ptex-base
 	cp ./ptex.tex ${TEXMF}/tex/ptex/ptex-base/
